@@ -1,8 +1,9 @@
-#Web Design and Programming Project
-![coverage](https://gitlab.com/danny7899/wdp-project/badges/master/coverage.svg?job=test)
+# Web Design and Programming Project
 
+[![pipeline status](https://gitlab.com/danny7899/wdp-project/badges/master/pipeline.svg)](https://gitlab.com/danny7899/wdp-project/commits/master)
+[![coverage report](https://gitlab.com/danny7899/wdp-project/badges/master/coverage.svg)](https://gitlab.com/danny7899/wdp-project/commits/master)
 
-##Members:
+## Members:
 - Aufa Wiandra Moenzil - 1706067512
 - Danny August Ramaputra - 1706019791
 - Micahel Sudirman - 1706020300
