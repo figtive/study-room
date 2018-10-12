@@ -9,4 +9,5 @@
 - Micahel Sudirman - 1706020300
 - Riza Kusuma - 1706019412
 
-
+## Heroku app link:
+http://study-room.herokuapp.com/
