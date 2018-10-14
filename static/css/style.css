@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.navbar{
+    background: yellow;
+    padding: 100px 0;
+    transform: skew(0deg, -10deg) translateY(-120px);
+}
+.navbar-container{
+    /* padding: 150px 200px; */
+    transform: skew(0deg, 10deg);
+}
+.navbar-container h1{
+    margin: 0;
+    padding: 20px 0;
+    font-size: 3em;
+}
+.homepage-image{
+    background-image:url('../img/rektorat.jpg');
+
+}
