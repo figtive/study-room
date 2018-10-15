@@ -2,50 +2,82 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" /> 
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
     <title>StudyRoom</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.19/css/uikit.min.css" />
     <!-- <link rel="stylesheet" href="{% static 'css/normalize.css' %}"> -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
-    <nav class="navbar" slant>
-        <div class="navbar-container">
-            <h1>Study Room</h1>
-        </div>
-    </nav>
-    <section class="homepage-image" uk-parallax="bgy: -50" slant>
+
+
+    <div class="outer-navbar">
+        <nav class="navbar" slant>
+            <div class="navbar-container">
+                <!-- <h1>Study Room</h1> -->
+            </div>
+        </nav>
+    </div>
+    <!-- <section class="homepage-image" uk-parallax="bgy: -50" slant>
         <div class="uk-height-large uk-background-cover uk-light uk-flex">
 
             <h1 class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical">Headline</h1>
-        
+
         </div>
-    </section>
+    </section> -->
+    <div class="pbegin" slant>
+        <div class="hello">
+            <h1>Headline</h1>
+        </div>
+    </div>
+
     <section class="news" slant>
         <div class="news-container uk-container">
             <h2>News</h2>
-            <p>news news news news news news news news news news news news news news news news news news news news news news 
-                    news news news news news news news news news news news news news news news news news news news news news 
-                    news news news news news news news news news news news news news news news news news news news news news 
-                    news news news news news news news news news news news news news news news news news news news news news 
-                    news news news news news news news news news news news news news news news news news news news news news 
+            <p>news news news news news news news news news news news news news news news news news news news news news
+                news
+                news news news news news news news news news news news news news news news news news news news news
+                news
+                news news news news news news news news news news news news news news news news news news news news
+                news
+                news news news news news news news news news news news news news news news news news news news news
+                news
+                news news news news news news news news news news news news news news news news news news news news
+                news
+            </p>
+            <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body">Item</div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body">Item</div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body">Item</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="event" slant>
+        <div class="event-container uk-container">
+            <h2>Events</h2>
+            <p>event event event event event event event event event event event event event event event event event
+                event event event event event
+                event event event event event event event event event event event event event event event event event
+                event event event event
+                event event event event event event event event event event event event event event event event event
+                event event event event
+                event event event event event event event event event event event event event event event event event
+                event event event event
+                event event event event event event event event event event event event event event event event event
+                event event event event
             </p>
         </div>
     </section>
 
-    <section class="event">
-            <div class="event-container uk-container">
-                <h2>Events</h2>
-                <p>event event event event event event event event event event event event event event event event event event event event event event 
-                        event event event event event event event event event event event event event event event event event event event event event 
-                        event event event event event event event event event event event event event event event event event event event event event 
-                        event event event event event event event event event event event event event event event event event event event event event 
-                        event event event event event event event event event event event event event event event event event event event event event 
-                </p>
-            </div>
-        </section>
-
-    <div class="homepage-image"></div>
+    <!-- <div class="homepage-image"></div> -->
 
 
 
