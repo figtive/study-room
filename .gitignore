@@ -1,4 +1,4 @@
 env/
 .vscode/
 .coverage
-__pycache__/
+**/__pycache__/
