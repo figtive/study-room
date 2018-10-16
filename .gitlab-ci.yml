@@ -11,7 +11,7 @@ Coverage:
     - python manage.py migrate
   when: on_success
   script:
-    - coverage run --include='test_app/*' manage.py test
+    - coverage run --include='[index|event|news|register_event|register_user]/*' manage.py test
     - coverage report -m
   coverage: '/TOTAL.+ ([0-9]{1,3}%)/'
   artifacts:
