@@ -7,12 +7,12 @@ body {
 
 *[slant] {
     padding: 100px 0;
-    transform: skew(0deg, -3deg) translateY(-120px);
+    transform: skew(0deg, -1.5deg) translateY(-120px);
     /* transform:; */
 }
 
 *[slant] > * {
-    transform: skew(0deg, 3deg);
+    transform: skew(0deg, 1.5deg);
 }
 
 
