@@ -15,15 +15,34 @@ body {
     transform: skew(0deg, 1.5deg);
 }
 
+.color-news{
+    
+    background: #1DB6D8;
+}
+
+.color-nav {
+    background: #EDBC10;
+}
+/*  */
+.content-colorbox{
+    height: inherit;
+    width: 50px;
+}
+/* 
 
 .outer-navbar{
     height:220px;
 }
 .navbar {
     background: #EDBC10;
-    /* height: 100px; */
-}
+    height: 100px; 
+} */
 
+/* .navbar-container h1{
+    margin: 0;
+    padding: 20px 0;
+    font-size: 3em;
+} */
 .news {
     background: #1B7BA4;
 }
@@ -32,15 +51,7 @@ body {
     background: #9B092C;
 }
 
-.navbar{
-    /* height: 100px; */
-}
 
-.navbar-container h1{
-    margin: 0;
-    padding: 20px 0;
-    font-size: 3em;
-}
 
 .homepage-image{
     background-image: url('/static/img/rektorat.jpg');
@@ -64,7 +75,7 @@ body {
     background-repeat:no-repeat;
     background-attachment:fixed;
     background-image: url('/static/img/ui.jpg');
-    min-height:20%;
+    min-height:70%;
     /* transform:  translateY(-220px); */
     /* z-index: -10; */
     opacity: 0.8;
@@ -73,10 +84,23 @@ body {
     /* padding: -100px; */
 }
 
-@media (max-height: 980px){
-    
-.navbar {
-    /* background: #EDBC10; */
-    height: 20px;
+.color-bar {
+    height: 25px;
+    background-color: #1DB6D8;
 }
+
+.card {
+    border-radius: 0px;
+    border-width: 0;
+}
+
+.news-card {
+    margin-top: 25px;
+}
+
+@media (max-width: 980px){
+/*     
+.navbar {
+    height: 20px;
+} */
 }
