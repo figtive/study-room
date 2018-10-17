@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-12">
+                <!-- <div class="col-lg-4 col-sm-12">
                     <div class="card news-card shadow">
                         <div class="color-bar color-news"></div>
                         <div class="card-body">
@@ -66,35 +66,23 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                {% for news in all_news %}
                 <div class="col-lg-4 col-sm-12">
                     <div class="card news-card shadow">
                         <div class="color-bar color-news"></div>
                         <div class="card-body">
                             <h5 class="card-title news-title">
-                                UI Getting Ready for GEMASTIK
+                                {{ news.title }}
                             </h5>
-                            <p class="news-author">by Anonymous</p>
+                            <p class="news-author">by {{ news.author }}</p>
                             <div class="card-tex news-content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                {{ news.content }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-12">
-                    <div class="card news-card shadow">
-                        <div class="color-bar color-news"></div>
-                        <div class="card-body">
-                            <h5 class="card-title news-title">
-                                UI Getting Ready for GEMASTIK
-                            </h5>
-                            <p class="news-author">by Anonymous</p>
-                            <div class="card-text news-content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
