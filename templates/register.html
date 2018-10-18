@@ -1,0 +1,14 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h2>Register</h2>
+        <form method="POST" action="{% url 'register_auth' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="password" class="form-control" placeholder="Verify Password" id="verify" required></input>
+            <button type="submit">Register</button>
+        </form>
+    </body>
+</html>

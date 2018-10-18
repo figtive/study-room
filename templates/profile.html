@@ -1,0 +1,12 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h2>Profile</h2>
+        <h3>{{ user.unionmember.name }}</h3>
+        <p>{{ user.unionmember.student_id }}</p>
+        <p>{{ user.unionmember.faculty }}</p>
+        <a href="{% url 'logout' %}">LOGOUT</a>
+    </body>
+</html>
