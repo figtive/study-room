@@ -105,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'register_user.User'
+# AUTH_USER_MODEL = 'register_user.User'
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'profile'
 
 
 # Internationalization
