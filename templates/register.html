@@ -1,13 +1,22 @@
+{% load static %}
 <html>
     <head>
-
+        <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Noto+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <script src="{% static 'js/script.js' %}"></script>
     </head>
     <body>
         <h2>Register</h2>
-        <form method="POST" action="{% url 'register_auth' %}">
+        <form id="registerForm" onsubmit="return validateRegister()" method="POST" action="{% url 'register_auth' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="password" class="form-control" placeholder="Verify Password" id="verify" required></input>
             <button type="submit">Register</button>
         </form>
     </body>
