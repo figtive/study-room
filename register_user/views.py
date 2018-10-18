@@ -24,7 +24,7 @@ def login_user(request):
         }
         return render(request, 'login.html', response)
     else:
-        return render(request, 'profile.html', response)
+        return HttpResponseRedirect('/user/profile/')
 
 
 
@@ -46,15 +46,16 @@ def register_user(request):
 def login_auth(request):
     if (not request.user.is_authenticated):
         if (request.method == 'POST'):
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(request, username=username, password=password)
-            if (user is not None):
-                login(request, user)
-                # print("\n" + str(user) + " logged in")
-                return HttpResponseRedirect('/user/profile/')
-            else:
-                raise forms.ValidationError('wrong password')
+            form = LoginUser(request.POST)
+            if (form.is_valid()):
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
+                user = authenticate(request, username=username, password=password)
+                if (user is not None):
+                    login(request, user)
+                    return HttpResponseRedirect('/user/profile/')
+                else:
+                    raise forms.ValidationError('user not registered or password incorrect')
         else:
             return HttpResponseRedirect('/')
     else:
@@ -75,11 +76,10 @@ def register_auth(request):
                 if not (User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists()):
                     user = User.objects.create_user(email=email, username=username, password=password)
                     member = UnionMember(user=user, name=name, student_id=student_id, faculty=faculty)
-                    # user.save()
                     member.save()
+                    return HttpResponseRedirect('/')
                 else:
-                    raise forms.ValidationError('already registered')
-            return HttpResponseRedirect('/')
+                    raise forms.ValidationError('username or email already registered')
         else:
             return HttpResponseRedirect('/')
     else:

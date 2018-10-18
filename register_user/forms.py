@@ -112,6 +112,6 @@ class RegisterUser(forms.Form):
         if password != ver_password:
             raise forms.ValidationError("Passwords do not match.")
         
-        if (len(str(student_id)) != 10) or ():
+        if (len(str(student_id)) != 10):
             raise forms.ValidationError("Student ID is invalid.")
 
