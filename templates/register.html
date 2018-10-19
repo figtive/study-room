@@ -1,5 +1,3 @@
-
-{% load bootstrap4 %}
 {% load static %}
 
 <html>
@@ -62,7 +60,6 @@
                             <div class="card form-card shadow">
                                 <div class="color-bar color-user"></div>
                                 <div class="card-body">
-                                    {% bootstrap_messages %}
                                     <form id="registerForm" class="needs-validation" method="POST" action="{% url 'register_auth' %}">
                                         {% csrf_token %}
                                         <!-- {{ form.as_p }} -->
@@ -73,7 +70,6 @@
                                         {{ form.faculty }}
                                         {{ form.password }}
                                         {{ form.ver_password }}
-                                        <!-- {% bootstrap_form form %} -->
                                         <button class="btn btn-form color-user" type="submit">REGISTER</button>
                                     </form>
                                 </div>
