@@ -29,7 +29,7 @@ body {
 }
 
 .nav-link{
-    width: 125px;
+    min-width: 125px;
     color: white;
     font-size: 1.2em;
     font-family: 'Montserrat', sans-serif;
@@ -77,11 +77,18 @@ body {
     background: #1B7BA4;
 }
 
+#user {
+    background: #5E09A1;
+}
+
 .color-news{
     background: #1DB6D8;
 }
 .color-event{
     background: #C30A37;
+}
+.color-user{
+    background: #9213F6;
 }
 .news-card, .event-card{
     margin-top: 25px;
@@ -156,7 +163,35 @@ body {
     font-family: 'Noto Sans', sans-serif;
     font-size: 1.2em;
 }
-
+form{
+    margin: 0;
+}
+.form-card{
+    width: 50%;
+    margin: auto;
+}
+.btn-form{
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+.form-control{
+    margin-bottom: 22px;
+}
+.auth-prompt{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    color: white;
+    text-align: center;
+    margin: auto;
+    padding-top: 20px;
+}
+.auth-prompt:hover{
+    color:  whitesmoke;
+}
 
 @media (max-width: 980px){
     /* TO DO  */
@@ -166,5 +201,8 @@ body {
     }
     .event-month {
         font-size: 2em;
+    }
+    .form-card{
+        width:100%;
     }
 }
