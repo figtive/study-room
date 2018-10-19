@@ -1,0 +1,32 @@
+<section id="navbar">
+    <div class="navbar-outer-content">
+        <div class="navbar-inner-content">
+            <nav class="navbar navbar-expand-lg color-nav">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item news-btn">
+                            <a class="nav-link" href="{% url 'news' %}">NEWS</a>
+                        </li>
+                        <li class="nav-item events-btn">
+                            <a class="nav-link" href="{% url 'event' %}">EVENTS</a>
+                        </li>
+                        <li class="nav-item user-btn">
+                            {% if user.is_authenticated %}
+                            <a class="nav-link" href="{% url 'profile'%}">{{ user.username|upper }}</a>
+                            {% else %}
+                            <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="navbar-slant-color" slant></div>
+    </div>
+</section>
