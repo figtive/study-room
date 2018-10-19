@@ -54,7 +54,7 @@ class RegisterUser(forms.Form):
         'type': 'email',
         'class': 'form-control',
         'placeholder': 'Email',
-        'data-parsley-equalto': '#email',
+        'data-parsley-type': 'email',
     }
     
     username_attrs = {

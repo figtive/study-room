@@ -39,6 +39,9 @@
                                 {{ event.description }}
                             </div>
                         </div>
+                        {% if user in event.participant_user.all %}
+                        <div class="content-colorbox event-attend"></div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -66,10 +69,10 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 {% if user.is_authenticated %}
-                {% if user_attends|get_item:event.id %}
-                <a href="{% url 'event_attend' event.id %}" class="btn btn-primary">ga boleh</a>
+                {% if user in event.participant_user.all %}
+                <a href="{% url 'event_leave' event.id %}" class="btn btn-danger text-white">Leave</a>
                 {% else %}
-                <a href="{% url 'event_attend' event.id %}" class="btn btn-primary">Attend </a>
+                <a href="{% url 'event_attend' event.id %}" class="btn btn-warning text-white">Attend </a>
                 {% endif %}
                 {% else %}
                 <button type="button" class="btn btn-primary">RSVP</button>
