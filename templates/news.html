@@ -1,6 +1,44 @@
-{% for i in all_news %}
-    <p>{{ i.title }}</p>
-    <p>By {{ i.author }}</p>
-    <p>{{ i.date }}</p>
-    <p>{{ i.content  }}</p>
-{% endfor %}
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+
+    <section id="parallax">
+        <div class="parallax-background"></div>
+
+        <div class="parallax-text">
+            <h1>Study Room</h1>
+        </div>
+    </section>
+
+
+
+    <section id="news" slant>
+        <div class="news-container container">
+            <div class="card shadow">
+                <div class="card-flex">
+                    <h3 class="card-title title-bar">NEWS</h3>
+                    <div class="content-colorbox color-news"></div>
+                </div>
+            </div>
+            <div class="row">
+                {% for news in all_news %}
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="card news-card shadow">
+                            <div class="color-bar color-news"></div>
+                            <div class="card-body">
+                                <h5 class="card-title news-title">
+                                    {{ news.title }}
+                                </h5>
+                                <p class="news-author">by {{ news.author }}//{{ news.date }}</p>
+                                <div class="card-text news-content">
+                                    {{ news.content }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
