@@ -111,7 +111,7 @@ body {
     background-size:cover;
     background-repeat:no-repeat;
     background-attachment:fixed;
-    background-image: url('/static/img/ui.jpg');
+    background-image: url("/static/img/ui.712600310b9c.jpg");
     min-height:100%;
     opacity: 0.8;
     filter: blur(0.1rem);
