@@ -1,6 +1,7 @@
 from django import forms
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
@@ -77,7 +78,7 @@ def register_auth(request):
                     user = User.objects.create_user(email=email, username=username, password=password)
                     member = UnionMember(user=user, name=name, student_id=student_id, faculty=faculty)
                     member.save()
-                    return HttpResponseRedirect('/')
+                    return HttpResponseRedirect('/user/login/')
                 else:
                     raise forms.ValidationError('username or email already registered')
         else:
