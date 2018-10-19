@@ -2,10 +2,10 @@ from django import forms
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
 
 
-from .forms import RegisterUser
+from .forms import LoginUser, RegisterUser
 from .models import UnionMember
 from django.contrib.auth.decorators import login_required
 
@@ -17,13 +17,24 @@ def profile(request):
     }
     return render(request, 'profile.html', response)
 
+def login_user(request):
+    if (not request.user.is_authenticated):
+        response = {
+            'form': LoginUser,
+        }
+        return render(request, 'login.html', response)
+    else:
+        return HttpResponseRedirect('/user/profile/')
+
+
+
 
 def logout_user(request):
     if (request.user.is_authenticated):
         logout(request)
     return HttpResponseRedirect('/')
 
-def register(request):
+def register_user(request):
     if (not request.user.is_authenticated):
         response = {
             'form': RegisterUser,
@@ -32,6 +43,23 @@ def register(request):
     else:
         return HttpResponseRedirect('/user/profile/')
 
+def login_auth(request):
+    if (not request.user.is_authenticated):
+        if (request.method == 'POST'):
+            form = LoginUser(request.POST)
+            if (form.is_valid()):
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
+                user = authenticate(request, username=username, password=password)
+                if (user is not None):
+                    login(request, user)
+                    return HttpResponseRedirect('/user/profile/')
+                else:
+                    raise forms.ValidationError('user not registered or password incorrect')
+        else:
+            return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/user/profile/')
 
 def register_auth(request):
     if (not request.user.is_authenticated):
@@ -45,14 +73,13 @@ def register_auth(request):
                 student_id = cleaned_data['student_id']
                 faculty = cleaned_data['faculty']
                 password = cleaned_data['password']
-                if not(User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists()):
+                if not (User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists()):
                     user = User.objects.create_user(email=email, username=username, password=password)
                     member = UnionMember(user=user, name=name, student_id=student_id, faculty=faculty)
-                    # user.save()
                     member.save()
+                    return HttpResponseRedirect('/')
                 else:
-                    raise forms.ValidationError('already registered')
-            return HttpResponseRedirect('/')
+                    raise forms.ValidationError('username or email already registered')
         else:
             return HttpResponseRedirect('/')
     else:
