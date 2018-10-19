@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'event',
     'register_event',
     'register_user',
-    'bootstrap4',
 ]
 
 MIDDLEWARE = [
