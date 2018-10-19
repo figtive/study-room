@@ -7,7 +7,7 @@ from .models import News
 
 
 def news(request):
-    all_news = News.objects.all().order_by("-news_date")
+    all_news = News.objects.all().order_by("-date")
     response = {
         'all_news': all_news,
     }
