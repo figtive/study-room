@@ -8,6 +8,7 @@ from .models import Event
 def event(request):
     all_events = Event.objects.all()
     response = {
-        'all_events' : all_events,
+        'all_event' : all_events,
     }
+    print(Event.objects.all())
     return render(request,'event.html',response)

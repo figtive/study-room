@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#student-id").keydown(function (e) {
+    $("#student_id_field").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
              // Allow: Ctrl/cmd+A

@@ -50,11 +50,11 @@
         {% for event in all_event %}
         <div class="row">
             <div class="col-lg-12">
-                <div class="card event-card shadow">
+                <div class="card event-card shadow" data-toggle="modal" data-target="#modal-{{ event.id }}">
                     <div class="card-flex">
                         <div class="content-colorbox color-event">
                             <!-- <div class="event-date-mobile-flex"> -->
-                            <div class="event-date">{{ event.date.day }}q</div>
+                            <div class="event-date">{{ event.date.day }}</div>
                             <div class="event-month">{{ event.date|date:'b'|upper }}</div>
                             <!-- </div> -->
                         </div>
@@ -73,4 +73,30 @@
         {% endfor %}
     </div>
 </section>
+
+{% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  Launch demo modal
+</button> {% endcomment %}
+
+{% for event in all_event %}
+<div class="modal fade" id="modal-{{ event.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered    " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">{{ event.name }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ event.description }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
 {% endblock %}
