@@ -20,7 +20,7 @@ def event_attend(request,id = None):
             event.participant_user.add(user)
             event.save()
         
-    return HttpResponseRedirect('/event/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 def event_leave(request,id = None):
     if request.user.is_authenticated:
@@ -30,4 +30,4 @@ def event_leave(request,id = None):
             event.participant_user.remove(user)
             event.save()
         
-    return HttpResponseRedirect('/event/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

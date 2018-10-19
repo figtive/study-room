@@ -55,8 +55,15 @@ body {
 .navbar{
     background: #EDBC10;
 }
+.navbar-brand{
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
 .navbar-toggler{
     margin-right: 15px;
+    border-radius: 0px;
+    color: white;
 }
 .navbar-outer-content{
     position:fixed;
@@ -235,13 +242,17 @@ form{
     width: 50%;
     margin: auto;
 }
-.btn-form{
+.btn-form, .btn-logout{
     border-radius: 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.2em;
     color: white;
     text-align: center;
     width: 100%;
+}
+.btn-logout {
+    width: 25%;
+    float:right;
 }
 .form-control{
     margin-bottom: 22px;
@@ -263,7 +274,16 @@ form{
 .modal-header{
     color: white;
 }
-
+.profile-card{
+    width:80%;
+    margin:auto;
+}
+.profile-name, .profile-info{
+    width: 100%;
+}
+.title-small{
+    font-size: 1.5em;
+}
 @media (max-width: 992px){
     /* TO DO  */
     .event-date, .event-month {

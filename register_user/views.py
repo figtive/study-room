@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from .forms import LoginUser, RegisterUser
 from .models import UnionMember
+from event.models import Event
 from django.contrib.auth.decorators import login_required
 
 
@@ -15,6 +16,7 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/user/login/')
 def profile(request):
     response = {
+        'all_event': Event.objects.all().filter(participant_user=request.user)
     }
     return render(request, 'profile.html', response)
 
