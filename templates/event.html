@@ -1,6 +1,48 @@
-{% for event in all_events %}
-<p>{{ event.name }}</p>
-<p>{{ event.date }}</p>
-<p>{{ event.location }}</p>
-<p>{{ event.description }}</p>
-{% endfor%}
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section id="parallax">
+    <div class="parallax-background"></div>
+
+    <div class="parallax-text">
+        <h1>Study Room</h1>
+    </div>
+</section>
+
+<section id="event" slant>
+    <div class="event-container container">
+        <div class="card shadow">
+            <div class="card-flex">
+                <h3 class="card-title title-bar">UPCOMING EVENTS</h3>
+                <div class="content-colorbox color-event"></div>
+            </div>
+        </div>
+        {% for event in all_event %}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card event-card shadow">
+                    <div class="card-flex">
+                        <div class="content-colorbox color-event">
+                            <!-- <div class="event-date-mobile-flex"> -->
+                            <div class="event-date">{{ event.date.day }}q</div>
+                            <div class="event-month">{{ event.date|date:'b'|upper }}</div>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title news-title">
+                                {{ event.name }}
+                            </h5>
+                            <div class="card-text news-content">
+                                {{ event.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
