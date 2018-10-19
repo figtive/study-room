@@ -69,10 +69,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-
-            'libraries': {
-                'event_extras': 'event.template_tags.event_extras'
-            },
         },
     },
 ]
