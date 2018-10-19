@@ -20,7 +20,7 @@ FACULTIES = [
 
 class LoginUser(forms.Form):
     username_attrs = {
-        'name': 'username_field',
+        'id': 'username_field',
         'type': 'text',
         'maxlength': 50,
         'class': 'form-control',
@@ -28,7 +28,7 @@ class LoginUser(forms.Form):
     }
 
     password_attrs = {
-        'name': 'password_field',
+        'id': 'password_field',
         'type': 'password',
         'maxlength': 50,
         'class': 'form-control',
@@ -41,22 +41,24 @@ class LoginUser(forms.Form):
 class RegisterUser(forms.Form):
 
     name_attrs = {
-        'name': 'name_field',
+        'id': 'name_field',
         'type': 'text',
         'maxlength': 50,
         'class': 'form-control',
         'placeholder': 'Name',
+        'data-parsley-required-message': 'Please enter your name!',
     }
     
     email_attrs = {
-        'name': 'email_field',
+        'id': 'email_field',
         'type': 'email',
         'class': 'form-control',
         'placeholder': 'Email',
+        'data-parsley-equalto': '#email',
     }
     
     username_attrs = {
-        'name': 'username_field',
+        'id': 'username_field',
         'type': 'text',
         'maxlength': 50,
         'class': 'form-control',
@@ -64,15 +66,17 @@ class RegisterUser(forms.Form):
     }
     
     student_id_attrs = {
-        'name': 'student_id_field',
-        'id': 'student-id',
+        'id': 'student_id_field',
         'type': 'text',
         'maxlength': 50,
         'class': 'form-control',
         'placeholder': 'Student ID',
+        'data-parsley-type': 'digits',
+        'data-parsley-length': '[10, 10]',
     }
     
     faculty_attrs = {
+        'id': 'faculty_field',
         'type': 'text',
         'maxlength': 50,
         'class': 'form-control',
@@ -80,7 +84,7 @@ class RegisterUser(forms.Form):
     }
     
     password_attrs = {
-        'name': 'password_field',
+        'id': 'password_field',
         'type': 'password',
         'maxlength': 50,
         'class': 'form-control',
@@ -88,11 +92,12 @@ class RegisterUser(forms.Form):
     }
 
     ver_password_attrs = {
-        'name': 'ver_password_field',
+        'id': 'ver_password_field',
         'type': 'password',
         'maxlength': 50,
         'class': 'form-control',
         'placeholder': 'Verify Password',
+        'data-parsley-equalto': '#password_field',
     }
 
     name = forms.CharField(label='', max_length=50, required=True, widget=forms.TextInput(attrs=name_attrs))

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load event_extras %}
 {% block content %}
 
 <section id="parallax">
@@ -11,6 +12,7 @@
 </section>
 
 <section id="event" slant>
+
     <div class="event-container container">
         <div class="card shadow">
             <div class="card-flex">
@@ -21,11 +23,11 @@
         {% for event in all_event %}
         <div class="row">
             <div class="col-lg-12">
-                <div class="card event-card shadow">
+                <div class="card event-card shadow" data-toggle="modal" data-target="#modal-event-{{ event.id }}">
                     <div class="card-flex">
                         <div class="content-colorbox color-event">
                             <!-- <div class="event-date-mobile-flex"> -->
-                            <div class="event-date">{{ event.date.day }}q</div>
+                            <div class="event-date">{{ event.date.day }}</div>
                             <div class="event-month">{{ event.date|date:'b'|upper }}</div>
                             <!-- </div> -->
                         </div>
@@ -43,6 +45,38 @@
         </div>
         {% endfor %}
     </div>
-</section>
 
+</section>
+{% for event in all_event %}
+<div class="modal fade" id="modal-event-{{ event.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header color-event">
+                <h5 class="modal-title card-title" id="exampleModalLongTitle">{{ event.name }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Location: {{ event.location }}</p>
+                <p>Date: {{ event.date }}</p>
+                <p>{{ event.description }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                {% if user.is_authenticated %}
+                {% if user_attends|get_item:event.id %}
+                <a href="{% url 'event_attend' event.id %}" class="btn btn-primary">ga boleh</a>
+                {% else %}
+                <a href="{% url 'event_attend' event.id %}" class="btn btn-primary">Attend </a>
+                {% endif %}
+                {% else %}
+                <button type="button" class="btn btn-primary">RSVP</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

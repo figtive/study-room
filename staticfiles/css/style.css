@@ -2,6 +2,7 @@
 body {
     margin: 0;
     padding: 0;
+    background: black; 
 }
 
 *[slant] {
@@ -13,23 +14,63 @@ body {
     transform: skew(0deg, 1.5deg);
 }
 
+/* Multi-Use */
+.card-flex{
+    display: inline-flex; 
+    justify-content: space-between;
+}
+.content-colorbox{
+    height: inherit;
+    width: 100px;
+}
+.color-bar {
+    height: 25px;
+}
+.card {
+    border-radius: 0px;
+    border-width: 0;
+    background-color: #eee;
+}
+.card-title{
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 30px;
+}
+.title-bar{
+    font-size: 2.2em;
+    margin: 0;
+    padding: 15px 20px;
+}
 /* Navbar */
-.navbar-color {
+.navbar-slant-color {
     background: #EDBC10;
     position:relative;
     z-index:-1;
     padding: 70px 0;
 }
-.navbar-content{
+.navbar{
+    background: #EDBC10;
+}
+.navbar-toggler{
+    margin-right: 15px;
+}
+.navbar-outer-content{
+    position:fixed;
+    z-index:9999;
+    width:100vw;
+}
+.navbar-inner-content{
     position:relative;
     z-index:1;
 }
-.navbar-content ul li{
-    margin: 0 15px;
+.navbar-inner-content ul li{
+    margin: 5px 15px;
 }
-
+.navbar-inner-content ul li a{
+    text-align: center;
+}
 .nav-link{
-    width: 125px;
+    min-width: 125px;
     color: white;
     font-size: 1.2em;
     font-family: 'Montserrat', sans-serif;
@@ -51,6 +92,9 @@ body {
     background-color: #9213F6;
 }
 /* Parallax */
+#parallax{
+    background: white;
+}
 .parallax-text{
     position:absolute;
     top:40%;
@@ -77,16 +121,37 @@ body {
     background: #1B7BA4;
 }
 
+#user {
+    background: #5E09A1;
+}
+
+.news-title{
+    margin: 0;
+}
+.news-author{
+    margin-top: 2px;
+    margin-bottom: 5px;
+    font-family: 'Noto Sans', sans-serif;
+    font-style: italic;
+    font-size: 1.1em;
+    color: #666;
+}
+.news-content{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
+}
 .color-news{
     background: #1DB6D8;
 }
 .color-event{
     background: #C30A37;
 }
+.color-user{
+    background: #9213F6;
+}
 .news-card, .event-card{
     margin-top: 25px;
 }
-
 .event-date{
     color: white;
     font-size: 3em;
@@ -105,18 +170,21 @@ body {
     text-align: center;
     line-height: 1em;
 }
-
 /* Events */
 #event {
     background: #9B092C;
 }
 /* Footer */
-
-.content-colorbox{
-    height: inherit;
-    width: 100px;
+#footer{
+}
+.social-icon-grid{
+    display: inline-flex;
+}
+.social-icon-img{
+    padding: 5px;
 }
 
+/* End of Section*/
 
 
 
@@ -156,15 +224,51 @@ body {
     font-family: 'Noto Sans', sans-serif;
     font-size: 1.2em;
 }
+form{
+    margin: 0;
+}
+.form-card{
+    width: 50%;
+    margin: auto;
+}
+.btn-form{
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+.form-control{
+    margin-bottom: 22px;
+}
+.auth-prompt{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    color: white;
+    text-align: center;
+    margin: auto;
+    padding-top: 20px;
+}
+.auth-prompt:hover{
+    color:  whitesmoke;
+}
 
-
-@media (max-width: 980px){
+@media (max-width: 992px){
     /* TO DO  */
     .event-date, .event-month {
-        transform: rotate(-90deg);
+        /* transform: rotate(-90deg); */
         margin-top: 22px;
     }
-    .event-month {
-        font-size: 2em;
+    .event-date, .event-month{
+        /* width: inherit; */
+        /* font-size: 1.5em;
+        margin: 0; */
     }
+    .form-card{
+        width:100%;
+    }
+    /* .event-date-nonmobile-flex{
+        visibility: hidden
+    } */
 }
