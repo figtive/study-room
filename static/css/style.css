@@ -306,6 +306,16 @@ form{
     font-weight: 500;
     font-size: 1.1em;
 }
+.navbar-brand{
+    display:flex;
+}
+.brand-icon{
+    height:64px;
+    width:auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 15px;
+}
 @media (max-width: 992px){
     /* TO DO  */
     .event-date, .event-month {
