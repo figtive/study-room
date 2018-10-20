@@ -256,6 +256,18 @@ form{
 }
 .form-control{
     margin-bottom: 22px;
+    border-radius: 0px;
+    border-width: 0px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+}
+.form-notice{
+    position: relative;
+    top: -25px;
+    height: 0;
+}
+.is-invalid{
+    border-right-width: 5px;
 }
 .auth-prompt{
     font-family: 'Montserrat', sans-serif;
@@ -283,6 +295,13 @@ form{
 }
 .title-small{
     font-size: 1.5em;
+}
+.alert-error{
+    background-color: #C30A37;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 1.1em;
 }
 @media (max-width: 992px){
     /* TO DO  */

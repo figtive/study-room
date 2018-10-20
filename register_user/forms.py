@@ -25,6 +25,8 @@ class LoginUser(forms.Form):
         'maxlength': 50,
         'class': 'form-control',
         'placeholder': 'Username',
+        'data-parsley-pattern': '/^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/',
+        'data-parsley-required-message': 'Please enter your username!',
     }
 
     password_attrs = {
@@ -33,6 +35,7 @@ class LoginUser(forms.Form):
         'maxlength': 50,
         'class': 'form-control',
         'placeholder': 'Password',
+        'data-parsley-required-message': 'Please enter your password!',
     }
 
     username = forms.CharField(label='', max_length=50, required=True, widget=forms.TextInput(attrs=username_attrs))
@@ -55,24 +58,34 @@ class RegisterUser(forms.Form):
         'class': 'form-control',
         'placeholder': 'Email',
         'data-parsley-type': 'email',
+        'data-parsley-required-message': 'Please enter your email!',
     }
     
     username_attrs = {
         'id': 'username_field',
         'type': 'text',
-        'maxlength': 50,
+        'minlength': 4,
+        'maxlength': 12,
         'class': 'form-control',
         'placeholder': 'Username',
+        'data-parsley-length': '[4,12]',
+        'data-parsley-length-message': 'Username has to be between 4 and 12 characters!',
+        'data-parsley-pattern': '/^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/',
+        'data-parsley-pattern-message': 'Please enter a valid username!',
+        'data-parsley-required-message': 'Please enter a username!',
     }
     
     student_id_attrs = {
         'id': 'student_id_field',
         'type': 'text',
-        'maxlength': 50,
+        'maxlength': 10,
         'class': 'form-control',
         'placeholder': 'Student ID',
         'data-parsley-type': 'digits',
-        'data-parsley-length': '[10, 10]',
+        'data-parsley-rangelength': '[10,10]',
+        'data-parsley-studentid': '',
+        'data-parsley-required-message': 'Please enter your Student ID!',
+        'data-parsley-rangelength-message': 'Student ID should be exactly 10 digits long',
     }
     
     faculty_attrs = {
@@ -81,42 +94,33 @@ class RegisterUser(forms.Form):
         'maxlength': 50,
         'class': 'form-control',
         'placeholder': 'Faculty',
+        'value': '',
     }
     
     password_attrs = {
         'id': 'password_field',
         'type': 'password',
-        'maxlength': 50,
+        'minlength': 8,
         'class': 'form-control',
         'placeholder': 'Password',
+        'data-parsley-required-message': 'Please enter your password!',
     }
 
     ver_password_attrs = {
         'id': 'ver_password_field',
         'type': 'password',
-        'maxlength': 50,
+        'minlength': 8,
         'class': 'form-control',
         'placeholder': 'Verify Password',
         'data-parsley-equalto': '#password_field',
+        'data-parsley-required-message': 'Please enter your password!',
     }
 
     name = forms.CharField(label='', max_length=50, required=True, widget=forms.TextInput(attrs=name_attrs))
     email = forms.CharField(label='', max_length=50, required=True, widget=forms.TextInput(attrs=email_attrs))
-    username = forms.CharField(label='', max_length=50, required=True, widget=forms.TextInput(attrs=username_attrs))
+    username = forms.CharField(label='', min_length=4, max_length=12, required=True, widget=forms.TextInput(attrs=username_attrs))
     student_id = forms.CharField(label='', required=True, widget=forms.TextInput(attrs=student_id_attrs))
     faculty = forms.CharField(label='', max_length=10, required=True, widget=forms.Select(choices=FACULTIES, attrs=faculty_attrs))
-    password = forms.CharField(label='', max_length=50, required=True, widget=forms.PasswordInput(attrs=password_attrs))
-    ver_password = forms.CharField(label='', max_length=50, required=True, widget=forms.PasswordInput(attrs=ver_password_attrs))
-    
-    def clean(self):
-        cleaned_data = super(RegisterUser, self).clean()
-        password = cleaned_data.get("password")
-        ver_password = cleaned_data.get("ver_password")
-        student_id = cleaned_data.get("student_id")
-
-        if password != ver_password:
-            raise forms.ValidationError("Passwords do not match.")
-        
-        if (len(str(student_id)) != 10):
-            raise forms.ValidationError("Student ID is invalid.")
+    password = forms.CharField(label='', min_length=8, required=True, widget=forms.PasswordInput(attrs=password_attrs))
+    ver_password = forms.CharField(label='', min_length=8, required=True, widget=forms.PasswordInput(attrs=ver_password_attrs))
 

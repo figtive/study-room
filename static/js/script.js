@@ -19,9 +19,16 @@ $(document).ready(function() {
         }
     })
 
-    $("#registerForm    ").parsley({
+    $("#registerForm").parsley({
         errorClass: 'is-invalid text-danger',
-        errorsWrapper: '<span class="form-text text-danger"></span>',
+        errorsWrapper: '<span class="invalid-feedback form-notice"></span>',
+        errorTemplate: '<span></span>',
+        trigger: 'change'
+    })
+
+    $("#loginForm").parsley({
+        errorClass: 'is-invalid text-danger',
+        errorsWrapper: '<span class="invalid-feedback form-notice"></span>',
         errorTemplate: '<span></span>',
         trigger: 'change'
     })
@@ -70,9 +77,25 @@ $(document).ready(function() {
     // });
 });
 
-
-// function validateRegister() {
-//     var name = document.forms['registerForm']['name_field'].value()
-//     console.log(name);
-//     return false;
-// }
+window.Parsley.addValidator('studentid', {
+    validateString: function(value) {
+        var i;
+        var even = 0;
+        var odd = 0;
+        if (value.length == 10) {
+            for (i = 0; i < 9; i++) {
+                var num = parseInt(value.charAt(i));
+                if (i % 2 == 0) {
+                    even = even + (3 * num);
+                } else {
+                    odd = odd + num;
+                }
+            }
+            return (even + odd) % 7 == parseInt(value.charAt(9));
+        }
+        return false;
+    },
+    messages: {
+      en: 'Please enter a valid Student ID!'
+    }
+  });

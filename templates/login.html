@@ -17,9 +17,17 @@
             <div class="card form-card shadow">
                 <div class="color-bar color-user"></div>
                 <div class="card-body">
+                    {% for message in messages %}
+                    <div class="alert alert-error alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>
+                    </div>
+                    {{ msg }}
+                    {% endfor %}
                     <form id="loginForm" method="POST" action="{% url 'login_auth' %}">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        {{ form.username }}
+                        {{ form.password }}
                         <button class="btn btn-form color-user" type="submit">LOGIN</button>
                     </form>
                 </div>

@@ -2,17 +2,26 @@ from django import forms
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-
-
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from .forms import LoginUser, RegisterUser
 from .models import UnionMember
 from event.models import Event
-from django.contrib.auth.decorators import login_required
 
+def student_id_check(id):
+    if (len(id) == 10):
+        even = 0
+        odd = 0
+        for i in range(9):
+            if i % 2 == 0:
+                even += 3 * int(id[i])
+            else:
+                odd += int(id[i])
+        return (even + odd) % 7 == int(id[9])
+    else:
+        return False
 
-# Create your views here.
 @login_required(login_url='/user/login/')
 def profile(request):
     response = {
@@ -28,9 +37,6 @@ def login_user(request):
         return render(request, 'login.html', response)
     else:
         return HttpResponseRedirect('/user/profile/')
-
-
-
 
 def logout_user(request):
     if (request.user.is_authenticated):
@@ -58,7 +64,8 @@ def login_auth(request):
                     login(request, user)
                     return HttpResponseRedirect('/user/profile/')
                 else:
-                    raise forms.ValidationError('user not registered or password incorrect')
+                    messages.error(request, 'User not registered or pasword incorrect!')
+                    return HttpResponseRedirect('/user/login/')
         else:
             return HttpResponseRedirect('/')
     else:
@@ -76,15 +83,22 @@ def register_auth(request):
                 student_id = cleaned_data['student_id']
                 faculty = cleaned_data['faculty']
                 password = cleaned_data['password']
-                if not (User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists()):
-                    user = User.objects.create_user(email=email, username=username, password=password)
-                    member = UnionMember(user=user, name=name, student_id=student_id, faculty=faculty)
-                    member.save()
-                    return HttpResponseRedirect('/user/login/')
-                else:
-                    raise forms.ValidationError('username or email already registered')
+                ver_password = cleaned_data['ver_password']
+                if password != ver_password:
+                    messages.error(request, 'Passwords no not match!')
+                    return HttpResponseRedirect('/user/register/')
+                if not student_id_check(student_id):
+                    messages.error(request, 'Student ID is invalid!')
+                    return HttpResponseRedirect('/user/register/')
+                if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
+                    messages.error(request, 'Username or email already registered!')
+                    return HttpResponseRedirect('/user/register/')
+                user = User.objects.create_user(email=email, username=username, password=password)
+                member = UnionMember(user=user, name=name, student_id=student_id, faculty=faculty)
+                member.save()
+                login(request, user)
+                return HttpResponseRedirect('/user/profile/')
         else:
             return HttpResponseRedirect('/')
     else:
         return HttpResponseRedirect('/user/profile/')
-        
