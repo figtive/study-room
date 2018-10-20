@@ -11,7 +11,6 @@
     </section>
 
 
-
     <section id="news" slant>
         <div class="news-container container">
             <div class="card shadow">
@@ -23,7 +22,7 @@
             <div class="row">
                 {% for news in all_news %}
                     <div class="col-lg-4 col-sm-12">
-                        <div class="card news-card shadow">
+                        <div class="card news-card shadow" data-toggle="modal" data-target="#modal-news-{{ news.id }}">
                             <div class="color-bar color-news"></div>
                             <div class="card-body">
                                 <h5 class="card-title news-title">
@@ -31,7 +30,7 @@
                                 </h5>
                                 <p class="news-author">by {{ news.author }}//{{ news.date }}</p>
                                 <div class="card-text news-content">
-                                    {{ news.content }}
+                                    {{ news.headline }}
                                 </div>
                             </div>
                         </div>
@@ -40,5 +39,8 @@
             </div>
         </div>
     </section>
+
+    {% include "_modal-news.html" %}
+
 
 {% endblock %}
