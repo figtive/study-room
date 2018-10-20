@@ -61,6 +61,12 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: white;
 }
+.navbar-brand:hover{
+    color:#C30A37;
+}
+.navbar-brand:hover svg #icon{
+    fill:#C30A37;
+}
 .navbar-toggler{
     margin-right: 15px;
     border-radius: 0px;
@@ -308,6 +314,9 @@ form{
 }
 .navbar-brand{
     display:flex;
+    margin-bottom: -20px;
+}
+.navbar-collapse{
 }
 .brand-icon{
     height:64px;
@@ -333,4 +342,7 @@ form{
     /* .event-date-nonmobile-flex{
         visibility: hidden
     } */
+    #collapse-first{
+        margin-top: 20px;
+    }
 }
