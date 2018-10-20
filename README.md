@@ -14,3 +14,10 @@
 ## HerokuApp Link
 http://study-room.herokuapp.com/
 
+## Apps
+- `index` - everyone
+- `news` - Aufa
+- `events` - Michael
+- `register_user` - Danny
+- `register_events` - Riza
+
