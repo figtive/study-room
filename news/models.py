@@ -7,5 +7,5 @@ class News(models.Model):
     title = models.CharField(max_length=50, blank=False)
     author = models.CharField(max_length=50, blank=False)
     date = models.DateField(default=timezone.now, blank=False)
-    content = models.TextField(blank=False)
     headline = models.CharField(max_length=50, blank=False)
+    content = models.TextField(blank=False)

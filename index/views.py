@@ -4,7 +4,7 @@ from news.models import News
 
 def index(request):
     response = {
-        'all_event': Event.objects.all().order_by("date")[:6],
-        'all_news': News.objects.all().order_by("date")[:5]
+        'all_event': Event.objects.all().order_by("date")[:5],
+        'all_news': News.objects.all().order_by("date")[:6]
     }
     return render(request, 'index.html', response)
