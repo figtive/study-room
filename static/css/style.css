@@ -51,6 +51,7 @@ body {
     position:relative;
     z-index:-1;
     padding: 70px 0;
+    pointer-events:auto;
 }
 .navbar{
     background: #EDBC10;
@@ -69,10 +70,12 @@ body {
     position:fixed;
     z-index:9999;
     width:100vw;
+    pointer-events: none;
 }
 .navbar-inner-content{
     position:relative;
     z-index:1;
+    pointer-events:auto;
 }
 .navbar-inner-content ul li{
     margin: 5px 15px;
