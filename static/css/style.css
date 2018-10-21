@@ -240,9 +240,15 @@ p{
 #footer{
     color: white;
     margin-top: -50px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 #footer p{
     margin-bottom: 0;
+    font-family: 'Lato', sans-serif;
+}
+#footer .disclaimer{
+    color: #111;
 }
 .social-icon-grid{
     display: inline-flex;
@@ -388,6 +394,50 @@ form{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
     transform: scale3d(1.05,1.05,1.05);
 }
+.copyright{
+    text-align: center;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: 'Lato', sans-serif;
+    color: #666;
+}
+.media-grid{
+    display: inline-flex;
+}
+.media-icon{
+    width: 48px;
+    height: 48px;
+    margin-right: 10px;
+}
+#fb-color{
+    background-color: #3b5998;
+    background-image: url('/static/img/facebook.png');
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+}
+#tw-color{
+    background-color: #1da1f2;
+    background-image: url('/static/img/twitter.png');
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+}
+#in-color{
+    background-color: #c13584;
+    background-image: url('/static/img/instagram.png');
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+}
+#web-color{
+    background-color: #EDBC10;
+    background-image: url('/static/img/grid-world.png');
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+}
 @media (max-width: 992px){
     /* TO DO  */
     .event-date{
@@ -410,5 +460,9 @@ form{
     } */
     #collapse-first{
         margin-top: 20px;
+    }
+    #footer{
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
