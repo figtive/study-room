@@ -60,7 +60,9 @@ class RegisterUser(forms.Form):
         'class': 'form-control',
         'placeholder': 'Email',
         'data-parsley-type': 'email',
+        'data-parsley-remote': '/user/register/email_check/',
         'data-parsley-required-message': 'Please enter your email!',
+        'data-parsley-remote-message': 'This email is already used!',
     }
     
     username_attrs = {
@@ -73,8 +75,10 @@ class RegisterUser(forms.Form):
         'data-parsley-length': '[4,12]',
         'data-parsley-length-message': 'Username has to be between 4 and 12 characters!',
         'data-parsley-pattern': '/^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/',
+        'data-parsley-remote': '/user/register/username_check/',
         'data-parsley-pattern-message': 'Please enter a valid username!',
         'data-parsley-required-message': 'Please enter a username!',
+        'data-parsley-remote-message': 'This username is already used!',
     }
     
     student_id_attrs = {
