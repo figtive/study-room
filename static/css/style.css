@@ -60,13 +60,20 @@ body {
     font-size: 2em;
     font-family: 'Montserrat', sans-serif;
     color: white;
+    transition: 0.3s;
 }
 .navbar-brand:hover{
     color:#C30A37;
 }
-.navbar-brand:hover svg #icon{
-    fill:#C30A37;
-}
+
+.navbar-brand .cls-1{fill:#fff; transition: 0.3s;}
+.navbar-brand .cls-2{fill:#fff; transition: 0.3s;}
+.navbar-brand .cls-3{fill:#fff; transition: 0.3s;}
+.navbar-brand .cls-4{fill:#fff; transition: 0.3s; }
+.navbar-brand:hover .cls-1{fill:#249acc;}
+.navbar-brand:hover .cls-2{fill:#c30a37;}
+.navbar-brand:hover .cls-3{fill:#fff;}
+.navbar-brand:hover .cls-4{fill:#fff;}
 .navbar-toggler{
     margin-right: 15px;
     border-radius: 0px;
@@ -103,27 +110,39 @@ body {
 
 }
 .news-btn{
-    background-color: #249ACC;
+    background-color: #249ACC; transition: 0.3s;
 }
 .events-btn{
-    background-color: #C30A37;
+    background-color: #C30A37; transition: 0.3s;
 }
 .user-btn{
-    background-color: #9213F6;
+    background-color: #9213F6; transition: 0.3s;
+}
+.news-btn:hover{
+    background-color: #1B7BA4;
+}
+.events-btn:hover{
+    background-color: #9B092C;
+}
+.user-btn:hover{
+    background-color: #5E09A1;
 }
 /* Parallax */
 #parallax{
     background: white;
+    overflow: hidden;
+    padding-bottom: 20px;
 }
 .parallax-text{
     position:absolute;
-    top:40%;
+    top:50%;
     width:100%;
     text-align:center;
     font-size: 3em;
     color:white;
     font-weight:bold; 
     background: transparent;
+    pointer-events: none;
 }
 .parallax-background{
     position:relative;
@@ -133,14 +152,19 @@ body {
     background-attachment:fixed;
     background-image: url('/static/img/ui.jpg');
     min-height:100%;
-    opacity: 0.8;
-    filter: blur(0.1rem);
+    opacity: 1;
+    filter: blur(0.5rem) brightness(0.75);
+    overflow-x: hidden;
+    transform: scale3d(1.1, 1.1, 1.1);
+    transition: 0.3s;
 }
 /* News */
 #news {
     background: #1B7BA4;
 }
-
+#event {
+    background: #9B092C;
+}
 #user {
     background: #5E09A1;
 }
@@ -161,16 +185,21 @@ body {
     font-size: 1.2em;
 }
 .color-news{
-    background: #1DB6D8;
+    background: #1DB6D8; transition: 0.3s
 }
 .color-event{
-    background: #C30A37;
+    background: #C30A37; transition: 0.3s
 }
 .color-user{
-    background: #9213F6;
+    background: #9213F6; transition: 0.3s
 }
 .news-card, .event-card{
     margin-top: 25px;
+}
+
+.btn.color-user:hover{
+    background: #5E09A1;
+    box-shadow: #1B7BA4, 2, 2, 2;
 }
 .event-date{
     color: white;
@@ -191,9 +220,6 @@ body {
     line-height: 1em;
 }
 /* Events */
-#event {
-    background: #9B092C;
-}
 /* Footer */
 #footer{
 }
@@ -203,7 +229,6 @@ body {
 .social-icon-img{
     padding: 5px;
 }
-
 /* End of Section*/
 
 
@@ -250,8 +275,9 @@ form{
 .form-card{
     width: 50%;
     margin: auto;
+    transition:0.3s;
 }
-.btn-form, .btn-logout{
+.btn{
     border-radius: 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.2em;
@@ -295,6 +321,12 @@ form{
 .modal-header{
     color: white;
 }
+.modal-backdrop{
+    z-index:99991;
+}
+.modal{
+    z-index: 99992;
+}
 .profile-card{
     width:80%;
     margin:auto;
@@ -311,12 +343,11 @@ form{
     font-family: 'Lato', sans-serif;
     font-weight: 500;
     font-size: 1.1em;
+    border-radius: 0;
 }
 .navbar-brand{
     display:flex;
     margin-bottom: -20px;
-}
-.navbar-collapse{
 }
 .brand-icon{
     height:64px;
@@ -324,6 +355,17 @@ form{
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 15px;
+}
+
+.clickable-card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0);
+    transform: scale3d(1,1,1);
+    transition: 0.15s;
+    cursor: pointer;
+}
+.clickable-card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    transform: scale3d(1.05,1.05,1.05);
 }
 @media (max-width: 992px){
     /* TO DO  */

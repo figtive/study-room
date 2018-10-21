@@ -21,7 +21,7 @@
         <div class="row">
             {% for news in all_news %}
             <div class="col-lg-4 col-sm-12">
-                <div class="card news-card shadow" data-toggle="modal" data-target="#modal-news-{{ news.id }}">
+                <div class="card clickable-card news-card shadow" data-toggle="modal" data-target="#modal-news-{{ news.id }}">
                     <div class="color-bar color-news"></div>
                     <div class="card-body">
                         <h5 class="card-title news-title">
@@ -50,7 +50,7 @@
         {% for event in all_event %}
         <div class="row">
             <div class="col-lg-12">
-                <div class="card event-card shadow" data-toggle="modal" data-target="#modal-event-{{ event.id }}">
+                <div class="card clickable-card event-card shadow" data-toggle="modal" data-target="#modal-event-{{ event.id }}">
                     <div class="card-flex">
                         <div class="content-colorbox color-event">
                             <!-- <div class="event-date-mobile-flex"> -->

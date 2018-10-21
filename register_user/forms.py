@@ -1,6 +1,7 @@
 from django import forms
 
 FACULTIES = [
+    ('', 'Faculty'),
     ('FK', 'FK'),
     ('FKG', 'FKG'),
     ('FKM', 'FKM'),
@@ -26,6 +27,7 @@ class LoginUser(forms.Form):
         'class': 'form-control',
         'placeholder': 'Username',
         'data-parsley-pattern': '/^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/',
+        'data-parsley-pattern-message': 'Please enter a valid username!',
         'data-parsley-required-message': 'Please enter your username!',
     }
 
@@ -95,6 +97,7 @@ class RegisterUser(forms.Form):
         'class': 'form-control',
         'placeholder': 'Faculty',
         'value': '',
+        'data-parsley-required-message': 'Please choose a faculty!',
     }
     
     password_attrs = {

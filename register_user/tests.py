@@ -165,7 +165,10 @@ class TestRegisterUser(TestCase):
 
     def test_error_register(self):
         response = self.client.post('/user/register/auth/', test_user_data)
+        self.assertRedirects(response, '/user/profile/')
+        response = self.client.get('/user/logout/')
         response = self.client.post('/user/register/auth/', test_user_data)
+        self.assertRedirects(response, '/user/register/')
         
     def test_error_login(self):
         response = self.client.post('/user/login/auth/', test_user_login_fail)

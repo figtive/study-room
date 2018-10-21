@@ -5,9 +5,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from event.models import Event
 from .forms import LoginUser, RegisterUser
 from .models import UnionMember
-from event.models import Event
 
 def student_id_check(id):
     if (len(id) == 10):
