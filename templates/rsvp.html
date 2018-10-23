@@ -1,0 +1,43 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}RSVP // {% endblock %}
+
+
+{% block content %}
+
+<section id="parallax">
+    <div class="parallax-background"></div>
+
+    <div class="parallax-text">
+        <h1>RSVP</h1>
+    </div>
+</section>
+
+<section id="event" slant>
+    <div class="news-container container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card form-card shadow">
+                    <div class="color-bar color-event"></div>
+                    <div class="card-body">
+                        <form id="rsvpForm" class="needs-validation" method="POST" action="{% url 'register_event_auth' event_id %}">
+                            {% csrf_token %}
+                            {{ form.name }}
+                            {{ form.email }}
+                            {{ form.student_id }}
+                            {{ form.faculty }}
+                            <button class="btn btn-form color-event" type="submit">ATTEND</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="http://parsleyjs.org/dist/parsley.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

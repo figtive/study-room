@@ -39,7 +39,6 @@ class RegisterEvent(forms.Form):
         'data-parsley-required-message': 'Please enter your email!',
     }
     
-    
     student_id_attrs = {
         'id': 'student_id_field',
         'type': 'text',
@@ -62,8 +61,6 @@ class RegisterEvent(forms.Form):
         'value': '',
         'data-parsley-required-message': 'Please choose a faculty!',
     }
-    
-
 
     name = forms.CharField(label='', max_length=50, required=True, widget=forms.TextInput(attrs=name_attrs))
     email = forms.CharField(label='', max_length=50, required=True, widget=forms.TextInput(attrs=email_attrs))

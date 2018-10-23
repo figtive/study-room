@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import UnionEvent
+from .models import RSVPMember
 # Register your models here.
 
-admin.site.register(UnionEvent)
+admin.site.register(RSVPMember)

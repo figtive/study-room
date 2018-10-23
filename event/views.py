@@ -15,7 +15,7 @@ def event(request):
 def event_attend(request,id = None):
     if request.user.is_authenticated:
         if id:
-            event = Event.objects.get(id = id)
+            event = Event.objects.get(id=id)
             user = request.user
             event.participant_user.add(user)
             event.save()
@@ -25,7 +25,7 @@ def event_attend(request,id = None):
 def event_leave(request,id = None):
     if request.user.is_authenticated:
         if id:
-            event = Event.objects.get(id = id)
+            event = Event.objects.get(id=id)
             user = request.user
             event.participant_user.remove(user)
             event.save()

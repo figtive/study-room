@@ -20,8 +20,12 @@ FACULTIES = [
     ('VOKASI', 'VOKASI'),
 ]
 
-class UnionEvent(models.Model):
+class RSVPMember(models.Model):
     name = models.CharField(max_length=50, blank=False, null=False)
     email = models.EmailField(max_length=50, blank=False, null=False)
     student_id = models.PositiveIntegerField(blank=False, null=False)
     faculty = models.CharField(max_length=10, choices=FACULTIES, blank=False, null=False)
+
+
+    def __str__(self):
+        return "RSVP: " + self.name
