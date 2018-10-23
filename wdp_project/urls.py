@@ -24,7 +24,7 @@ urlpatterns = [
     path('event/', include('event.urls')),
     path('news/', include('news.urls')),
     path('admin/', admin.site.urls),
-    re_path(r"/*", index_views.error_404)
+    re_path(r'/*', index_views.error_404)
 ]
 
 handler404 = index_views.error_404

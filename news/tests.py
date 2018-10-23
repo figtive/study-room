@@ -18,7 +18,7 @@ class TestNews(TestCase):
 
     def test_url_doesnt_exists(self):
         response = Client().get('/nothing/')
-        self.assertEqual(response.status_code, 404)
+        self.assertTemplateUsed(response, '404.html')
 
     def test_app_config(self):
         self.assertEqual(NewsConfig.name, 'news')
