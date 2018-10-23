@@ -14,7 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
+from django.conf.urls import handler404, handler500
+from index import views as index_views
 
 urlpatterns = [
     path('', include('index.urls')),
@@ -22,4 +24,9 @@ urlpatterns = [
     path('event/', include('event.urls')),
     path('news/', include('news.urls')),
     path('admin/', admin.site.urls),
+    re_path(r"/*", index_views.error_404)
 ]
+
+handler404 = index_views.error_404
+handler500 = index_views.error_500
+
