@@ -1,6 +1,6 @@
 from django import forms
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -21,6 +21,18 @@ def student_id_check(id):
         return (even + odd) % 7 == int(id[9])
     else:
         return False
+
+def username_check(request):
+    username = request.GET.get('username', None)
+    if not User.objects.filter(username__iexact=username).exists():
+        return JsonResponse(data={'status': 'true'}, status=202)
+    return JsonResponse(data={'status': 'false'}, status=406)
+
+def email_check(request):
+    email = request.GET.get('email', None)
+    if not User.objects.filter(email__iexact=email).exists():
+        return JsonResponse(data={'status': 'true'}, status=202)
+    return JsonResponse(data={'status': 'false'}, status=406)
 
 @login_required(login_url='/user/login/')
 def profile(request):

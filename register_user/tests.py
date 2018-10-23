@@ -193,5 +193,24 @@ class TestRegisterUser(TestCase):
         self.assertFalse(student_id_check('1'))
         self.assertFalse(student_id_check(''))
 
+    def test_email_exist(self):
+        response = self.client.post('/user/register/auth/', follow=True, data=test_user_data)
+        response = self.client.get('/user/register/email_check/', data={
+            'email': 'mail@email.com',
+        })
+        self.assertTrue(response.status_code, 202)
+        response = self.client.get('/user/register/email_check/', data={
+            'email': 'john@email.com',
+        })
+        self.assertTrue(response.status_code, 406)
 
-
+    def test_username_exist(self):
+        response = self.client.post('/user/register/auth/', follow=True, data=test_user_data)
+        response = self.client.get('/user/register/username_check/', data={
+            'username': 'john',
+        })
+        self.assertTrue(response.status_code, 202)
+        response = self.client.get('/user/register/username_check/', data={
+            'username': 'john.apple',
+        })
+        self.assertTrue(response.status_code, 406)
