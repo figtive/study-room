@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.apps import apps
 from django.contrib.auth import get_user
 
@@ -40,8 +40,8 @@ class Event_Test(TestCase):
         self.assertEqual(response.status_code,200)
     
     def test_url_not_exist(self):
-        response = self.client.get('doesnotexist')
-        self.assertEqual(response.status_code,404)
+        response = Client().get('/doesnotexist/')
+        self.assertTemplateUsed(response, '404.html')
 
     def test_app_config(self):  
         self.assertEqual(EventConfig.name, 'event')

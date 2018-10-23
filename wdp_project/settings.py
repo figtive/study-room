@@ -25,7 +25,7 @@ SECRET_KEY = '3q3ijn!2*9-a0==$k$%butk$gltgbkz3)x=i=x-15kuh898^n-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['study-room.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
