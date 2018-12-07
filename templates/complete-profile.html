@@ -1,0 +1,51 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Register // {% endblock %}
+
+
+{% block content %}
+
+<section id="parallax">
+    <div class="parallax-background"></div>
+
+    <div class="parallax-text">
+        <h1>REGISTER</h1>
+    </div>
+</section>
+
+<section id="user" slant>
+    <div class="news-container container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card form-card shadow">
+                    <div class="color-bar color-user"></div>
+                    <div class="card-body">
+                        {% for message in messages %}
+                        <div class="alert alert-error alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>
+                        </div>
+                        {{ msg }}
+                        {% endfor %}
+                        <form id="registerForm" class="needs-validation" method="POST" action="{% url 'complete_profile' %}">
+                            {% csrf_token %}
+                            {{ form.student_id }}
+                            {{ form.faculty }}
+                            <button class="btn btn-form color-user" type="submit">REGISTER</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <a class="auth-prompt" href="{% url 'login' %}">ALREADY HAVE AN ACCOUNT?</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="http://parsleyjs.org/dist/parsley.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

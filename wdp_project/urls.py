@@ -24,6 +24,8 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('rsvp/', include('register_event.urls')),
     path('admin/', admin.site.urls),
-    re_path(r'/*', index_views.error_404)
+    # re_path(r'/*', index_views.error_404),
+    
+    path('auth/', include('social_django.urls', namespace='social')),  # <- Google Oauth
 ]
 
