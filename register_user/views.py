@@ -162,24 +162,24 @@ def register_auth(request):
 
 
 def complete_profile(request):
-    print('FUNCTION IS SUMMONED')
-    if (request.method == 'POST'):
-        form = CompleteProfile(request.POST)
-        if (form.is_valid()):
-            cleaned_data = form.cleaned_data
-            student_id = cleaned_data['student_id']
-            faculty = cleaned_data['faculty']
-            if not student_id_check(student_id):
-                messages.error(request, 'Student ID is invalid!')
-                return HttpResponseRedirect('/user/register/')
-            request.user.name = request.user.first_name + ' ' + request.user.last_name
-            request.user.student_id = student_id
-            request.user.faculty = faculty
-            request.user.save()
-            return HttpResponseRedirect('/user/profile/')
-        else:
-            print('FORM IS NOT VALID D:')
-
+    # print(request.user.student_id)
+    if request.user.is_authenticated:
+        if(request.user.student_id is not None and request.user.faculty is not None):
+            return HttpResponseRedirect('../')
+        if (request.method == 'POST'):
+            form = CompleteProfile(request.POST)
+            if (form.is_valid()):
+                cleaned_data = form.cleaned_data
+                student_id = cleaned_data['student_id']
+                faculty = cleaned_data['faculty']
+                if not student_id_check(student_id):
+                    messages.error(request, 'Student ID is invalid!')
+                    return HttpResponseRedirect('/user/register/')
+                request.user.name = request.user.first_name + ' ' + request.user.last_name
+                request.user.student_id = student_id
+                request.user.faculty = faculty
+                request.user.save()
+                return HttpResponseRedirect('/user/profile/')
     response = {
         'form': CompleteProfile,
     }
