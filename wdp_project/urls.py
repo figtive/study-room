@@ -23,6 +23,7 @@ urlpatterns = [
     path('event/', include('event.urls')),
     path('news/', include('news.urls')),
     path('rsvp/', include('register_event.urls')),
+    path('about/', include('about.urls')),
     path('admin/', admin.site.urls),
     re_path(r'/*', index_views.error_404)
 ]
