@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'register_user.apps.UserConfig',
     'index',
     'news',
     'event',
@@ -105,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# AUTH_USER_MODEL = 'register_user.User'
+AUTH_USER_MODEL = 'register_user.UnionMember'
 
 LOGIN_REDIRECT_URL = 'profile'
 

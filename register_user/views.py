@@ -3,7 +3,6 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from event.models import Event
 from .forms import LoginUser, RegisterUser
@@ -24,13 +23,13 @@ def student_id_check(id):
 
 def username_check(request):
     username = request.GET.get('username', None)
-    if not User.objects.filter(username__iexact=username).exists():
+    if not UnionMember.objects.filter(username__iexact=username).exists():
         return JsonResponse(data={'status': 'true'}, status=202)
     return JsonResponse(data={'status': 'false'}, status=406)
 
 def email_check(request):
     email = request.GET.get('email', None)
-    if not User.objects.filter(email__iexact=email).exists():
+    if not UnionMember.objects.filter(email__iexact=email).exists():
         return JsonResponse(data={'status': 'true'}, status=202)
     return JsonResponse(data={'status': 'false'}, status=406)
 
@@ -102,12 +101,12 @@ def register_auth(request):
                 if not student_id_check(student_id):
                     messages.error(request, 'Student ID is invalid!')
                     return HttpResponseRedirect('/user/register/')
-                if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
+                if UnionMember.objects.filter(username=username).exists() or UnionMember.objects.filter(email=email).exists():
                     messages.error(request, 'Username or email already registered!')
                     return HttpResponseRedirect('/user/register/')
-                user = User.objects.create_user(email=email, username=username, password=password)
-                member = UnionMember(user=user, name=name, student_id=student_id, faculty=faculty)
-                member.save()
+                user = UnionMember.objects.create_user(name=name, username=username, email=email, password=password, student_id=student_id, faculty=faculty)
+                # member = UnionMember(user=user, name=name, student_id=student_id, faculty=faculty)
+                # member.save()
                 login(request, user)
                 return HttpResponseRedirect('/user/profile/')
         else:
