@@ -150,7 +150,7 @@ def register_auth(request):
 
                 # member = UnionMember(user=user, name=name, student_id=student_id, faculty=faculty)
                 # member.save()
-                login(request, user)
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return HttpResponseRedirect('/user/profile/')
         else:
             return HttpResponseRedirect('/')
