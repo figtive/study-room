@@ -132,16 +132,15 @@ def register_auth(request):
                 user.save()
 
                 current_site = get_current_site(request)
-                mail_subject = 'Welcome to Study Room!'
+                email_subject = 'Welcome to Study Room!'
                 message = render_to_string('confirm_email.html', {
                     'user': user,
                     'domain': current_site.domain,
                     'uid':urlsafe_base64_encode(force_bytes(user.pk)).decode(),
                     'token':account_activation_token.make_token(user),
                 })
-                sending_email = EmailMessage(
-                            mail_subject, message, to=[email]
-                )
+                sending_email = EmailMultiAlternatives(email_subject, strip_tags(message), "studyroom.fstudios@gmail.com", [email])
+                sending_email.attach_alternative(message, "text/html")
                 sending_email.send()
 
 
