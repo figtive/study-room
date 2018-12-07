@@ -21,6 +21,14 @@
                 <div class="card profile-card shadow">
                     <div class="color-bar color-user"></div>
                     <div class="card-body">
+                        {% for message in messages %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>
+                        </div>
+                        {{ msg }}
+                        {% endfor %}
+
                         <div class="row">
                             <div class="col-12">
                                 <h3 class="profile-name">{{ user.name }}</h3>

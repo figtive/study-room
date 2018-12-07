@@ -114,6 +114,13 @@ AUTH_USER_MODEL = 'register_user.UnionMember'
 
 LOGIN_REDIRECT_URL = 'profile'
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'studyroom.fstudios@gmail.com'
+EMAIL_HOST_PASSWORD = 'misumisu'
+EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
