@@ -128,24 +128,21 @@ def register_auth(request):
                         request, 'Username or email already registered!')
                     return HttpResponseRedirect('/user/register/')
                 user = UnionMember.objects.create_user(name=name, username=username, email=email, password=password, student_id=student_id, faculty=faculty)
-                # user.is_active = False
+                user.is_active = False
+                user.save()
 
-                print("creating email... ")
                 current_site = get_current_site(request)
-                mail_subject = 'Activate your blog account.'
+                mail_subject = 'Welcome to Study Room!'
                 message = render_to_string('confirm_email.html', {
                     'user': user,
                     'domain': current_site.domain,
                     'uid':urlsafe_base64_encode(force_bytes(user.pk)).decode(),
                     'token':account_activation_token.make_token(user),
                 })
-                print("building... ")
                 sending_email = EmailMessage(
                             mail_subject, message, to=[email]
                 )
-                print("sending email...  ")
                 sending_email.send()
-                print("sent")
 
 
 
