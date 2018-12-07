@@ -1,6 +1,6 @@
 from django import forms
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -158,8 +158,9 @@ def activate_user(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
-        # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        messages.success(request, 'Thank you for confirming yout email!')
+        return HttpResponseRedirect('/user/profile/')
     else:
-        return HttpResponse('Activation link is invalid!')
+        messages.error(request, 'Activation link invalid!')
+        return HttpResponseRedirect('/user/register/')
+        # make page just for this, have a resend activation link
