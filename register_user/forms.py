@@ -131,3 +131,30 @@ class RegisterUser(forms.Form):
     password = forms.CharField(label='', min_length=8, required=True, widget=forms.PasswordInput(attrs=password_attrs))
     ver_password = forms.CharField(label='', min_length=8, required=True, widget=forms.PasswordInput(attrs=ver_password_attrs))
 
+class CompleteProfile(forms.Form):
+    
+    student_id_attrs = {
+        'id': 'student_id_field',
+        'type': 'text',
+        'maxlength': 10,
+        'class': 'form-control',
+        'placeholder': 'Student ID',
+        'data-parsley-type': 'digits',
+        'data-parsley-rangelength': '[10,10]',
+        'data-parsley-studentid': '',
+        'data-parsley-required-message': 'Please enter your Student ID!',
+        'data-parsley-rangelength-message': 'Student ID should be exactly 10 digits long',
+    }
+    
+    faculty_attrs = {
+        'id': 'faculty_field',
+        'type': 'text',
+        'maxlength': 50,
+        'class': 'form-control',
+        'placeholder': 'Faculty',
+        'value': '',
+        'data-parsley-required-message': 'Please choose a faculty!',
+    }
+
+    student_id = forms.CharField(label='', required=True, widget=forms.TextInput(attrs=student_id_attrs))
+    faculty = forms.CharField(label='', max_length=10, required=True, widget=forms.Select(choices=FACULTIES, attrs=faculty_attrs))

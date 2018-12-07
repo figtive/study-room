@@ -1,9 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-
-from django.dispatch import receiver
-
+from django.contrib.auth.models import AbstractUser
 
 FACULTIES = [
     ('FK', 'FK'),
@@ -23,21 +19,15 @@ FACULTIES = [
     ('VOKASI', 'VOKASI'),
 ]
 
-class UnionMember(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, blank=False, null=False)
-    # username = models.CharField(max_length=50, blank=False, null=False)
-    # email = models.EmailField(max_length=50, blank=False, null=False)
-    student_id = models.PositiveIntegerField(blank=False, null=False)
-    faculty = models.CharField(max_length=10, choices=FACULTIES, blank=False, null=False)
-    
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         UnionMember.objects.create(user=instance)
+# class UnionMemberManager(UserManager):
+#     pass
 
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.profile.save()
-
-# Create your models here.
+class UnionMember(AbstractUser):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # username = models.CharField(max_length=50, blank=False, null=False, unique=True)
+    # password = models.CharField(max_length=50, blank=False, null=False)
+    name = models.CharField(max_length=50, blank=False, null=True)
+    email = models.EmailField(max_length=50, blank=False, null=True)
+    student_id = models.PositiveIntegerField(blank=False, null=True)
+    faculty = models.CharField(max_length=10, choices=FACULTIES, blank=False, null=True)
+    REQUIRED_FIELDS = ['name', 'email', 'student_id', 'faculty']

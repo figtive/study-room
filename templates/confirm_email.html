@@ -1,0 +1,19 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+{% autoescape off %}
+
+<section id="parallax">
+    <div class="parallax-background"></div>
+
+    <div class="parallax-text">
+        <h1>Hi, {{ user.username }}!</h1>
+    </div>
+</section>
+<section>
+    http://{{ domain }}{% url 'activate_user' uidb64=uid token=token %}
+</section>
+
+{% endautoescape %}
+
+{% endblock %}
