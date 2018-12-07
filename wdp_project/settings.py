@@ -114,7 +114,7 @@ EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.mail.yahoo.com'
 EMAIL_HOST_USER = 'studyroom.fstudios@yahoo.com'
 EMAIL_HOST_PASSWORD = 'fstudiosmisu'
-EMAIL_PORT = 465
+EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
