@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
 
 
 from django.contrib.sites.shortcuts import get_current_site

@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'event',
     'register_event',
     'register_user',
-    'social_django' # <- Here
+    'social_django', # <- Here
 ]
 
 MIDDLEWARE = [
