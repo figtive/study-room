@@ -90,15 +90,14 @@ def login_auth(request):
                 username = form.cleaned_data['username']
                 password = form.cleaned_data['password']
                 user = authenticate(request, username=username, password=password)
-                if (user is not None):
+                if (user is not None and user.is_active):
                     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                     return HttpResponseRedirect('/user/profile/')
+                elif (user is not None and not user.is_active):
+                    messages.error(request, 'Check your email to activate your account!')
                 else:
-                    if (not user.is_active):
-                        messages.error(request, 'Check your email to activate your account!')
-                    else:
-                        messages.error(request, 'User not registered or pasword incorrect!')
-                    return HttpResponseRedirect('/user/login/')
+                    messages.error(request, 'User not registered or pasword incorrect!')
+                return HttpResponseRedirect('/user/login/')
         else:
             return HttpResponseRedirect('/')
     else:
