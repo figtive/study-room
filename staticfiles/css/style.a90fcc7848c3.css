@@ -189,7 +189,7 @@ p{
     background-size:cover;
     background-repeat:no-repeat;
     background-attachment:fixed;
-    background-image: url('/static/img/ui.jpg');
+    background-image: url("/static/img/ui.712600310b9c.jpg");
     min-height:100%;
     opacity: 1;
     filter: blur(0.5rem) brightness(0.75);
@@ -286,28 +286,28 @@ p{
 }
 #fb-color{
     background-color: #3b5998;
-    background-image: url('/static/img/facebook.png');
+    background-image: url("/static/img/facebook.078fb122f0b8.png");
     background-position: center;
     background-size: 60%;
     background-repeat: no-repeat;
 }
 #tw-color{
     background-color: #1da1f2;
-    background-image: url('/static/img/twitter.png');
+    background-image: url("/static/img/twitter.22c7e4eee3e5.png");
     background-position: center;
     background-size: 60%;
     background-repeat: no-repeat;
 }
 #in-color{
     background-color: #c13584;
-    background-image: url('/static/img/instagram.png');
+    background-image: url("/static/img/instagram.40ed774d378f.png");
     background-position: center;
     background-size: 60%;
     background-repeat: no-repeat;
 }
 #web-color{
     background-color: #EDBC10;
-    background-image: url('/static/img/grid-world.png');
+    background-image: url("/static/img/grid-world.6faf8afc69b0.png");
     background-position: center;
     background-size: 60%;
     background-repeat: no-repeat;

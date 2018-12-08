@@ -1,0 +1,19 @@
+{% load static %}
+{% block content %}
+{% autoescape off %}
+
+<section id="parallax">
+    <div class="parallax-background"></div>
+
+    <div class="parallax-text">
+        <h1>Hi, {{ user.username }}!</h1>
+    </div>
+</section>
+<section>
+    To reset your password, click on the following link:
+    http://{{ domain }}{% url 'reset' uidb64=uid token=token %}
+</section>
+
+{% endautoescape %}
+
+{% endblock %}

@@ -44,7 +44,6 @@ class LoginUser(forms.Form):
     password = forms.CharField(label='', max_length=50, required=True, widget=forms.PasswordInput(attrs=password_attrs))
 
 class RegisterUser(forms.Form):
-
     name_attrs = {
         'id': 'name_field',
         'type': 'text',
@@ -60,7 +59,7 @@ class RegisterUser(forms.Form):
         'class': 'form-control',
         'placeholder': 'Email',
         'data-parsley-type': 'email',
-        'data-parsley-remote': '/user/register/email_check/',
+        'data-parsley-remote': '/user/register/email_check/?reverse=0',
         'data-parsley-required-message': 'Please enter your email!',
         'data-parsley-remote-message': 'This email is already used!',
     }
@@ -95,7 +94,7 @@ class RegisterUser(forms.Form):
     }
     
     faculty_attrs = {
-        'id': 'faculty_field',
+        'id': 'faculty_field', 
         'type': 'text',
         'maxlength': 50,
         'class': 'form-control',
@@ -158,3 +157,41 @@ class CompleteProfile(forms.Form):
 
     student_id = forms.CharField(label='', required=True, widget=forms.TextInput(attrs=student_id_attrs))
     faculty = forms.CharField(label='', max_length=10, required=True, widget=forms.Select(choices=FACULTIES, attrs=faculty_attrs))
+
+class ForgetPassword(forms.Form):
+    email_attrs = {
+        'id': 'email_field',
+        'type': 'email',
+        'class': 'form-control',
+        'placeholder': 'Email',
+        'data-parsley-type': 'email',
+        # 'data-parsley-remote': '/user/register/email_check/?reverse=1',
+        'data-parsley-required-message': 'Please enter your email!',
+        'data-parsley-remote-message': 'This email is already used!',
+    }
+    
+    email = forms.CharField(label='', max_length=50, required=True, widget=forms.TextInput(attrs=email_attrs))
+
+class ResetPassword(forms.Form):
+    password_attrs = {
+        'id': 'password_field',
+        'type': 'password',
+        'minlength': 8,
+        'class': 'form-control',
+        'placeholder': 'Password',
+        'data-parsley-required-message': 'Please enter your password!',
+    }
+
+    ver_password_attrs = {
+        'id': 'ver_password_field',
+        'type': 'password',
+        'minlength': 8,
+        'class': 'form-control',
+        'placeholder': 'Verify Password',
+        'data-parsley-equalto': '#password_field',
+        'data-parsley-required-message': 'Please enter your password!',
+    }
+
+    password = forms.CharField(label='', min_length=8, required=True, widget=forms.PasswordInput(attrs=password_attrs))
+    ver_password = forms.CharField(label='', min_length=8, required=True, widget=forms.PasswordInput(attrs=ver_password_attrs))
+

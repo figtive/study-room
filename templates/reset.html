@@ -1,7 +1,7 @@
 {% extends '_base.html' %}
 {% load static %}
 
-{% block title %}Complete Profile // {% endblock %}
+{% block title %}Reset Password // {% endblock %}
 
 
 {% block content %}
@@ -10,7 +10,7 @@
     <div class="parallax-background"></div>
 
     <div class="parallax-text">
-        <h1>REGISTER</h1>
+        <h1>RESET PASSWORD</h1>
     </div>
 </section>
 
@@ -21,19 +21,18 @@
                 <div class="card form-card shadow">
                     <div class="color-bar color-user"></div>
                     <div class="card-body">
-                        Your profile is incomplete, please complete your profile!
                         {% for message in messages %}
-                        <div class="alert alert-error alert-dismissible fade show" role="alert">
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
                             {{ message }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>
                         </div>
                         {{ msg }}
                         {% endfor %}
-                        <form id="registerForm" class="needs-validation" method="POST" action="{% url 'complete_profile' %}">
+                        <form id="registerForm" class="needs-validation" method="POST" action="{% url 'reset_auth' uidb64=uid token=token %}">
                             {% csrf_token %}
-                            {{ form.student_id }}
-                            {{ form.faculty }}
-                            <button class="btn btn-form color-user" type="submit">REGISTER</button>
+                            {{ form.password }}
+                            {{ form.ver_password }}
+                            <button class="btn btn-form color-user" type="submit">CHANGE PASSWORD</button>
                         </form>
                     </div>
                 </div>
