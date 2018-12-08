@@ -89,14 +89,15 @@ def login_auth(request):
             if (form.is_valid()):
                 username = form.cleaned_data['username']
                 password = form.cleaned_data['password']
-                user = authenticate(
-                    request, username=username, password=password)
+                user = authenticate(request, username=username, password=password)
                 if (user is not None):
-                    login(request, user)
+                    login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                     return HttpResponseRedirect('/user/profile/')
                 else:
-                    messages.error(
-                        request, 'User not registered or pasword incorrect!')
+                    if (not user.is_active):
+                        messages.error(request, 'Check your email to activate your account!')
+                    else:
+                        messages.error(request, 'User not registered or pasword incorrect!')
                     return HttpResponseRedirect('/user/login/')
         else:
             return HttpResponseRedirect('/')
@@ -130,11 +131,9 @@ def register_auth(request):
                 user = UnionMember.objects.create_user(name=name, username=username, email=email, password=password, student_id=student_id, faculty=faculty)
                 user.is_active = False
                 user.save()
-
                 send_email(request, user, 'Welcome to Study Room!', 'confirm-email.html')
-
-                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                return HttpResponseRedirect('/user/profile/')
+                messages.success(request, 'Welcome! Check your email to activate your account!")
+                return HttpResponseRedirect('/user/login/')
         else:
             return HttpResponseRedirect('/')
     else:
