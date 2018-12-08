@@ -132,7 +132,7 @@ def register_auth(request):
                 user.is_active = False
                 user.save()
                 send_email(request, user, 'Welcome to Study Room!', 'confirm-email.html')
-                messages.success(request, 'Welcome! Check your email to activate your account!")
+                messages.success(request, 'Welcome! Check your email to activate your account!')
                 return HttpResponseRedirect('/user/login/')
         else:
             return HttpResponseRedirect('/')
