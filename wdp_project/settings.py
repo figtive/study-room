@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = '3q3ijn!2*9-a0==$k$%butk$gltgbkz3)x=i=x-15kuh898^n-'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -43,7 +41,8 @@ INSTALLED_APPS = [
     'event',
     'register_event',
     'register_user',
-    'social_django', # <- Here
+    'about',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -71,15 +70,14 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',  # <- Here
-                'social_django.context_processors.login_redirect', # <- Here
-            
+                'social_django.context_processors.login_redirect',  # <- Here
+
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'wdp_project.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -90,7 +88,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -121,7 +118,6 @@ EMAIL_HOST_PASSWORD = 'misumisu'
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -135,7 +131,6 @@ USE_L10N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
@@ -146,20 +141,19 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-
 # G Oauth seperated settings
 AUTHENTICATION_BACKENDS = (
- 'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
- 'social_core.backends.google.GoogleOpenId',  # for Google authentication
- 'social_core.backends.google.GoogleOAuth2',  # for Google authentication
- 'social_core.backends.github.GithubOAuth2',  # for Github authentication
- 'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
- 
- 'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
+    'social_core.backends.google.GoogleOpenId',  # for Google authentication
+    'social_core.backends.google.GoogleOAuth2',  # for Google authentication
+    'social_core.backends.github.GithubOAuth2',  # for Github authentication
+    'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
+
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'complete_profile'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='763682682648-2iirmm36uugvb8i6tl1l5l02dj0pe0h8.apps.googleusercontent.com'  #Paste CLient Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'oOU-BE8ygWeX1cKK6DqZEnEs' #Paste Secret Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '763682682648-2iirmm36uugvb8i6tl1l5l02dj0pe0h8.apps.googleusercontent.com'  # Paste CLient Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'oOU-BE8ygWeX1cKK6DqZEnEs'  # Paste Secret Key
