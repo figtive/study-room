@@ -29,9 +29,9 @@ $(document).ready(function () {
                 var html = '\
                 <div class="row">\
                     <div class="col-lg-12">\
-                        <div class="card clickable-card event-card shadow" data-toggle="modal" data-target="#modal-event-{{ event.id }}">\
+                        <div class="card clickable-card event-card shadow" data-toggle="modal">\
                             <div class="card-flex">\
-                                <div class="content-colorbox color-event">\
+                                <div class="content-colorbox color-about">\
                                     <div class="event-date">\
                                         <p>' + today.getDate() + '</p>\
                                     </div>\
