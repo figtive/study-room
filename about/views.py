@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 from .models import About
 from .forms import aboutForm
@@ -21,5 +21,5 @@ def add_about(request):
             cleaned_data = form.cleaned_data
             about = About(author=request.user.name, content=cleaned_data['about_post'])
             about.save()  
-            return HttpResponseRedirect('/about/')
-    return HttpResponse('testing')
+            return JsonResponse(data={"success": "true"}, status=202)
+    return JsonResponse(data={"success": "false"}, status=406)

@@ -18,26 +18,44 @@
     <div class="news-container container">
         <div class="card shadow">
             <div class="card-flex">
+                <h3 class="card-title title-bar">ABOUT US</h3>
+                <div class="content-colorbox color-about"></div>
+            </div>
+        </div>
+
+        <div class="card shadow mt-4 mb-4">
+            <div class="card-body">
+                SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN SOMETHIN 
+            </div>
+        </div>
+        <div class="card shadow">
+            <div class="card-flex">
                 <h3 class="card-title title-bar">TESTIMONIES</h3>
-                <div class="content-colorbox color-news"></div>
+                <div class="content-colorbox color-about"></div>
             </div>
         </div>
         <div class="row">
-
             <!-- <section id="event" slant> -->
                 {% if user.is_authenticated %}
-                <div class="event-container container">
-                    <form id="aboutForm" action="{% url 'add-about' %}" method="POST">
-                        {% csrf_token %}
-                        {{ form.about_post }}
-                        <button class="btn btn-form color-user" type="submit">LOGIN</button>
-                    </form>
+                <div class="about-container container">
+                    <div class="card form-card shadow mt-4">
+                        <div class="color-bar color-about"></div>
+                        <div class="card-body">
+                            <form id="aboutForm">
+                                {% csrf_token %}
+                                {{ form.about_post }}
+                                <input type="text" name="name" hidden="true" value="{{ user.name }}"/>
+                                <button class="btn btn-form color-about" type="submit">SUBMIT</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="testimony-list">
                     {% for about in all_about %}
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card clickable-card event-card shadow" data-toggle="modal" data-target="#modal-event-{{ event.id }}">
                                 <div class="card-flex">
-                                    <div class="content-colorbox color-event">
+                                    <div class="content-colorbox color-about">
                                         <div class="event-date">
                                             <p>{{ about.date.day }}</p>
                                         </div>
@@ -71,5 +89,5 @@
 
 {% block scripts %}
 <script src="http://parsleyjs.org/dist/parsley.js"></script>
-<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/about.js' %}"></script>
 {% endblock %}
