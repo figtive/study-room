@@ -89,8 +89,12 @@ def login_auth(request):
             if (form.is_valid()):
                 username = form.cleaned_data['username']
                 password = form.cleaned_data['password']
-                user = authenticate(request, username=username, password=password)
+                try:
+                    user = UnionMember.objects.get(username=username)
+                except(UnionMember.DoesNotExist):
+                    user = None
                 if (user is not None and user.is_active):
+                    user = authenticate(request, username=username, password=password)
                     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                     return HttpResponseRedirect('/user/profile/')
                 elif (user is not None and not user.is_active):
@@ -139,7 +143,7 @@ def register_auth(request):
         return HttpResponseRedirect('/user/profile/')
 
 
-def complete_profile(request):
+def complete_profile(request):  # pragma: no cover
     if request.user.is_authenticated:
         if(request.user.student_id is not None and request.user.faculty is not None):
             return HttpResponseRedirect('../')
@@ -163,11 +167,11 @@ def complete_profile(request):
     return render(request, 'complete-profile.html', response)
     
 
-def activate_user(request, uidb64, token):
+def activate_user(request, uidb64, token):  # pragma: no cover
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = UnionMember.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, UnionMember.DoesNotExist):
+    except(UnionMember.DoesNotExist):
         user = None
     if user is not None and account_token.check_token(user, token):
         user.is_active = True
@@ -177,9 +181,8 @@ def activate_user(request, uidb64, token):
     else:
         messages.error(request, 'Activation link invalid!')
         return HttpResponseRedirect('/user/register/')
-        # make page just for this, have a resend activation link
 
-def forget_password(request):
+def forget_password(request):   # pragma: no cover
     if (not request.user.is_authenticated):
         response = {
             'form': ForgetPassword,
@@ -188,7 +191,7 @@ def forget_password(request):
     else:
         return HttpResponseRedirect('/user/profile/')
 
-def forget_password_auth(request):
+def forget_password_auth(request):  # pragma: no cover
     if (not request.user.is_authenticated):
         if (request.method == 'POST'):
             form = ForgetPassword(request.POST)
@@ -200,17 +203,16 @@ def forget_password_auth(request):
                 except(UnionMember.DoesNotExist):
                     user = None
                 if user is not None:
-                    print(user)
                     send_email(request, user, "Password Reset", "reset-email.html")
                     messages.success(request, 'Password reset link has been sent to your email!')
     return HttpResponseRedirect('/user/forget/')
 
 
-def reset_password(request, uidb64, token):
+def reset_password(request, uidb64, token): # pragma: no cover
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = UnionMember.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, UnionMember.DoesNotExist):
+    except(pUnionMember.DoesNotExist):
         user = None
     if user is not None and account_token.check_token(user, token):
         response = {
@@ -226,7 +228,7 @@ def reset_password(request, uidb64, token):
 
 
 
-def reset_password_auth(request, uidb64, token):
+def reset_password_auth(request, uidb64, token):    # pragma: no cover
     if (not request.user.is_authenticated):
         if (request.method == 'POST'):
             form = ResetPassword(request.POST)
@@ -237,7 +239,7 @@ def reset_password_auth(request, uidb64, token):
                 try:
                     uid = force_text(urlsafe_base64_decode(uidb64))
                     user = UnionMember.objects.get(pk=uid)
-                except(TypeError, ValueError, OverflowError, UnionMember.DoesNotExist):
+                except(UnionMember.DoesNotExist):
                     user = None
                 if user is not None and account_token.check_token(user, token):
                     if password != ver_password:
@@ -253,12 +255,7 @@ def reset_password_auth(request, uidb64, token):
     else:
         return HttpResponseRedirect('/user/register/')
 
-
-
-
-
-def send_email(request, user, email_subject, template):
-    print(user)
+def send_email(request, user, email_subject, template): # pragma: no cover
     current_site = get_current_site(request)
     message = render_to_string(template, {
         'user': user,
@@ -266,7 +263,7 @@ def send_email(request, user, email_subject, template):
         'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
         'token': account_token.make_token(user),
     })
-    sending_email = EmailMultiAlternatives(email_subject, strip_tags(message), "studyroom.fstudios@gmail.com", [user.email])
+    sending_email = EmailMultiAlternatives(email_subject, strip_tags(message), "Study Room", [user.email])
     sending_email.attach_alternative(message, "text/html")
     sending_email.send()
 

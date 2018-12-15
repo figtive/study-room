@@ -5,8 +5,9 @@ from django.contrib.auth import get_user
 # Create your tests here.
 from django.db import models
 from django.utils import timezone
-
 from django.urls import resolve
+
+from register_user.models import UnionMember
 from .views import event
 from .models import Event
 from .apps import EventConfig
@@ -58,6 +59,9 @@ class Event_Test(TestCase):
 
     def test_event_attend(self):
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         event = Event(name="Name", date=timezone.now(),  location="loc", description="desc")
         event.save()
@@ -68,6 +72,9 @@ class Event_Test(TestCase):
 
     def test_event_leave(self):
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         event = Event(name="Name", date=timezone.now(),  location="loc", description="desc")
         event.save()

@@ -1,0 +1,52 @@
+Name                               Stmts   Miss  Cover   Missing
+----------------------------------------------------------------
+about/__init__.py                      0      0   100%
+about/admin.py                         3      0   100%
+about/apps.py                          3      0   100%
+about/migrations/0001_initial.py       8      0   100%
+about/migrations/__init__.py           0      0   100%
+about/models.py                        7      0   100%
+about/tests.py                        18      0   100%
+about/urls.py                          3      0   100%
+about/views.py                         5      0   100%
+event/__init__.py                      0      0   100%
+event/admin.py                         3      0   100%
+event/apps.py                          3      0   100%
+event/models.py                       13      0   100%
+event/tests.py                        51      0   100%
+event/urls.py                          3      0   100%
+event/views.py                        22      0   100%
+index/__init__.py                      0      0   100%
+index/admin.py                         1      0   100%
+index/apps.py                          3      0   100%
+index/models.py                        1      0   100%
+index/tests.py                        33      0   100%
+index/urls.py                          3      0   100%
+index/views.py                        12      4    67%   15-16, 20-21
+manage.py                              9      2    78%   9-10
+news/__init__.py                       0      0   100%
+news/admin.py                          3      0   100%
+news/apps.py                           3      0   100%
+news/models.py                         8      0   100%
+news/tests.py                         18      0   100%
+news/urls.py                           3      0   100%
+news/views.py                          7      0   100%
+register_event/__init__.py             0      0   100%
+register_event/admin.py                3      0   100%
+register_event/forms.py               11      0   100%
+register_event/models.py              10      1    90%   31
+register_event/tests.py                1      0   100%
+register_event/urls.py                 4      0   100%
+register_event/views.py               34     26    24%   9-18, 21-42
+register_user/__init__.py              0      0   100%
+register_user/admin.py                 7      0   100%
+register_user/forms.py                35      0   100%
+register_user/models.py                9      0   100%
+register_user/tests.py               171      0   100%
+register_user/tokens.py                6      0   100%
+register_user/urls.py                  4      0   100%
+register_user/views.py               111      0   100%
+wdp_project/settings.py               34      0   100%
+wdp_project/urls.py                    4      0   100%
+----------------------------------------------------------------
+TOTAL                                690     33    95%

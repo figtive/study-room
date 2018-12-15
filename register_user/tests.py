@@ -60,11 +60,17 @@ class TestRegisterUser(TestCase):
 
     def test_user_login(self):
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         self.assertTrue(get_user(self.client).is_authenticated)
 
     def test_user_logout(self):
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         response = self.client.get('/user/logout/')
         response = self.client.get('/')
@@ -72,12 +78,18 @@ class TestRegisterUser(TestCase):
 
     def test_user_profile(self):
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         response = self.client.get('/user/profile/')
         self.assertContains(response, test_user_data['name'])
 
     def test_user_display_index(self):
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         response = self.client.get('/')
         self.assertContains(response, test_user_data['username'].upper())
@@ -92,6 +104,9 @@ class TestRegisterUser(TestCase):
 
     def test_profile_exists(self):
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         response = self.client.get('/user/profile/')
         self.assertEqual(response.status_code,200)
@@ -106,6 +121,9 @@ class TestRegisterUser(TestCase):
 
     def test_template_profile(self):
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         response = self.client.get('/user/profile/')
         self.assertTemplateUsed(response, 'profile.html')
@@ -139,6 +157,9 @@ class TestRegisterUser(TestCase):
         response = self.client.get('/user/register/auth/')
         self.assertRedirects(response, '/')
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         response = self.client.get('/user/register/auth/')
         self.assertRedirects(response, '/user/profile/')
@@ -147,26 +168,34 @@ class TestRegisterUser(TestCase):
         response = self.client.get('/user/login/auth/')
         self.assertRedirects(response, '/')
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         response = self.client.get('/user/login/auth/')
         self.assertRedirects(response, '/user/profile/')
         
     def test_redirect_register(self):
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         response = self.client.get('/user/register/')
         self.assertRedirects(response, '/user/profile/')
 
     def test_redirect_login(self):
         response = self.client.post('/user/register/auth/', test_user_data)
+        user = UnionMember.objects.get(email=test_user_data['email'])
+        user.is_active = True
+        user.save()
         response = self.client.post('/user/login/auth/', test_user_login)
         response = self.client.get('/user/login/')
         self.assertRedirects(response, '/user/profile/')
 
     def test_error_register(self):
         response = self.client.post('/user/register/auth/', test_user_data)
-        self.assertRedirects(response, '/user/profile/')
-        response = self.client.get('/user/logout/')
+        self.assertRedirects(response, '/user/login/')
         response = self.client.post('/user/register/auth/', test_user_data)
         self.assertRedirects(response, '/user/register/')
         
@@ -214,3 +243,9 @@ class TestRegisterUser(TestCase):
             'username': 'john.apple',
         })
         self.assertTrue(response.status_code, 406)
+
+    def test_prompt_activation(self):
+        response = self.client.post('/user/register/auth/', test_user_data)
+        response = self.client.post('/user/login/auth/', follow=True, data=test_user_login)
+        self.assertContains(response, 'Check your email to activate your account!')
+        
