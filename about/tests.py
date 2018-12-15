@@ -5,9 +5,6 @@ from django.apps import apps
 from .views import about
 from .apps import AboutConfig
 
-
-# Create your tests here.
-
 class TestNews(TestCase):
     def test_using_status_function(self):
         response = resolve('/about/')

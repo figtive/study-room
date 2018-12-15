@@ -19,13 +19,7 @@ FACULTIES = [
     ('VOKASI', 'VOKASI'),
 ]
 
-# class UnionMemberManager(UserManager):
-#     pass
-
 class UnionMember(AbstractUser):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # username = models.CharField(max_length=50, blank=False, null=False, unique=True)
-    # password = models.CharField(max_length=50, blank=False, null=False)
     name = models.CharField(max_length=50, blank=False, null=True)
     email = models.EmailField(max_length=50, blank=False, null=True)
     student_id = models.PositiveIntegerField(blank=False, null=True)

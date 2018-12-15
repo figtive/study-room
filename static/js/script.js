@@ -32,6 +32,13 @@ $(document).ready(function () {
         errorTemplate: '<span></span>',
         trigger: 'change'
     })
+
+    $("#aboutForm").parsley({
+        errorClass: 'is-invalid text-danger',
+        errorsWrapper: '<span class="invalid-feedback form-notice"></span>',
+        errorTemplate: '<span></span>',
+        trigger: 'change'
+    })
 });
 
 window.Parsley.addValidator('studentid', {
