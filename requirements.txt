@@ -1,5 +1,6 @@
 Django==2.1.1
 gunicorn==19.7.1
-whitenoise
+whitenoise==4.1
 coverage
+selenium==3.14.1
 social-auth-app-django
