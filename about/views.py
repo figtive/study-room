@@ -1,16 +1,25 @@
 from django.shortcuts import render
 
-# Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 
-# from .models import
-
-response = {}
-
+from .models import About
+from .forms import aboutForm
 
 def about(request):
-    # all_news = News.objects.all().order_by("-date")
-    # response = {
-    #     'all_news': all_news,
-    # }
-    return render(request, 'about.html', response)
+    add_about = aboutForm()
+    all_about = About.objects.all()[::-1]
+    response = {
+        'form': add_about,
+        'all_about': all_about,
+    }
+    return render(request, 'about.html', response)  
+
+def add_about(request):
+    if request.method == "POST":
+        form = aboutForm(request.POST)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
+            about = About(author=request.user.name, content=cleaned_data['about_post'])
+            about.save()  
+            return HttpResponseRedirect('/about/')
+    return HttpResponse('testing')
