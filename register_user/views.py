@@ -95,8 +95,10 @@ def login_auth(request):
                     user = None
                 if (user is not None and user.is_active):
                     user = authenticate(request, username=username, password=password)
-                    login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                    return HttpResponseRedirect('/user/profile/')
+                    if (user is not None):
+                        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                        return HttpResponseRedirect('/user/profile/')
+                    messages.error(request, 'User not registered or pasword incorrect!')
                 elif (user is not None and not user.is_active):
                     messages.error(request, 'Check your email to activate your account!')
                 else:
@@ -180,7 +182,7 @@ def activate_user(request, uidb64, token):  # pragma: no cover
         return HttpResponseRedirect('/user/profile/')
     else:
         messages.error(request, 'Activation link invalid!')
-        return HttpResponseRedirect('/user/register/')
+        return HttpResponseRedirect('/user/login/')
 
 def forget_password(request):   # pragma: no cover
     if (not request.user.is_authenticated):
