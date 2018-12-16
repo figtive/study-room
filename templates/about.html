@@ -24,10 +24,14 @@
         </div>
 
         <div class="card shadow mt-4 mb-4">
-            <div class="card-body"><h4>
-                Study Room is a project made by the web developers of FASILKOM UI. These webdevelopers wanted to create a website prototype that can act as a medium of sharing informations between students.
-            </h4></div>
+            <div class="card-body">
+                <h4>
+                    Study Room is a project made by the web developers of FASILKOM UI. These webdevelopers wanted to
+                    create a website prototype that can act as a medium of sharing informations between students.
+                </h4>
+            </div>
         </div>
+        {% if user.is_authenticated %}
         <div class="card shadow">
             <div class="card-flex">
                 <h3 class="card-title title-bar">TESTIMONIES</h3>
@@ -35,21 +39,19 @@
             </div>
         </div>
         <div class="row">
-            <!-- <section id="event" slant> -->
-                {% if user.is_authenticated %}
-                <div class="about-container container">
-                    <div class="card form-card shadow mt-4">
-                        <div class="color-bar color-about"></div>
-                        <div class="card-body">
-                            <form id="aboutForm">
-                                {% csrf_token %}
-                                {{ form.about_post }}
-                                <input type="text" name="name" hidden="true" value="{{ user.name }}"/>
-                                <button class="btn btn-form color-about" type="submit">SUBMIT</button>
-                            </form>
-                        </div>
+            <div class="about-container container">
+                <div class="card form-card shadow mt-4">
+                    <div class="color-bar color-about"></div>
+                    <div class="card-body">
+                        <form id="aboutForm">
+                            {% csrf_token %}
+                            {{ form.about_post }}
+                            <input type="text" name="name" hidden="true" value="{{ user.name }}" />
+                            <button class="btn btn-form color-about" type="submit">SUBMIT</button>
+                        </form>
                     </div>
-                    <div class="testimony-list">
+                </div>
+                <div class="testimony-list">
                     {% for about in all_about %}
                     <div class="row">
                         <div class="col-lg-12">
@@ -62,7 +64,6 @@
                                         <div class="event-month">
                                             <p>{{ about.date|date:'b'|upper }}</p>
                                         </div>
-            
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title news-title">
@@ -78,10 +79,9 @@
                     </div>
                     {% endfor %}
                 </div>
-                {% endif %}
-            <!-- </section> -->  
-
+            </div>
         </div>
+        {% endif %}
     </div>
 </section>
 
